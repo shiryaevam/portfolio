@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    container_name: my-website
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/var/log/nginx
