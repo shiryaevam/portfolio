@@ -1,0 +1,41 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  web:
+    build: .
+    container_name: portfolio
+    restart: unless-stopped
+    ports:
+      - "80:8080"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - portfolio-network
+    # Ограничения ресурсов
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    # Безопасность
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    healthcheck:
+          test: [ "CMD", "curl", "-f", "http://localhost:8080/health" ]
+          interval: 30s
+          timeout: 10s
+          retries: 3
+          start_period: 40s
+
+networks:
+  portfolio-network:
+    driver: bridge

@@ -1,0 +1,43 @@
+# Исключить ненужные файлы из Docker образа
+node_modules
+npm-debug.log
+yarn-error.log
+.git
+.gitignore
+README.md
+.env
+.nyc_output
+coverage
+.nyc_output
+.coverage
+dist
+.DS_Store
+*.log
+
+# Исключить конфиденциальные файлы
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+.env.local
+.env.production
+
+# Исключить временные файлы
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Исключить IDE файлы
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Исключить тестовые файлы
+test/
+tests/
+__tests__/
+*.test.js
+*.spec.js

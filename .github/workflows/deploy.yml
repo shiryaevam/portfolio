@@ -1,0 +1,136 @@
+name: Deploy Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run TypeScript check
+        run: yarn type-check
+
+      - name: Run ESLint
+        run: yarn lint
+
+  build:
+    runs-on: ubuntu-latest
+    needs: quality-check
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build project
+        run: yarn build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: dist/
+
+  deploy-prod:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: dist/
+
+      - name: Check server connectivity
+        run: |
+          echo "🔍 Checking server connectivity..."
+          echo "Host: ${{ secrets.SSH_HOST }}"
+          echo "Port: ${{ secrets.SSH_PORT }}"
+          ping -c 3 ${{ secrets.SSH_HOST }} || echo "⚠️ Ping failed"
+          nc -zv ${{ secrets.SSH_HOST }} ${{ secrets.SSH_PORT }} || echo "⚠️ Port ${{ secrets.SSH_PORT }} not accessible"
+          
+      - name: Test SSH connection
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port:  ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            echo "✅ SSH connection successful!"
+            echo "👤 User: $(whoami)"
+            echo "📁 Directory: $(pwd)"
+            echo "📅 Time: $(date)"
+
+      - name: Deploy to Production
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            echo "🚀 Starting deployment..."
+            echo "📅 Time: $(date)"
+            echo "👤 User: $(whoami)"
+            echo "📁 Current directory: $(pwd)"
+            
+            cd ~/portfolio
+            echo "📁 Changed to: $(pwd)"
+            
+            # Check if docker-compose.yml exists
+            if [ ! -f "docker-compose.yml" ]; then
+              echo "❌ docker-compose.yml not found!"
+              echo "📋 Files in directory:"
+              ls -la
+              exit 1
+            fi
+            
+            # Check Docker
+            echo "🐳 Docker status:"
+            docker --version || echo "❌ Docker not installed"
+            docker-compose --version || echo "❌ Docker Compose not installed"
+            
+            # Stop existing containers
+            echo "🛑 Stopping existing containers..."
+            docker-compose down || echo "⚠️ No containers to stop"
+            
+            # Pull latest code
+            echo "📥 Pulling latest code..."
+            git pull origin main || echo "⚠️ Git pull failed, continuing..."
+            
+            # Build and start containers
+            echo "🔨 Building and starting containers..."
+            docker-compose up -d --build
+            
+            # Wait and check
+            echo "⏳ Waiting for containers to start..."
+            sleep 30
+            
+            echo "🔍 Container status:"
+            docker-compose ps
+            
+            echo "✅ Deployment completed!"
