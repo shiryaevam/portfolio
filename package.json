@@ -12,8 +12,11 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "antd": "^5.27.3",
+    "antd-style": "^3.7.1",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.1"
   },
   "engines": {
     "node": "22"

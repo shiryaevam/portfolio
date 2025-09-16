@@ -1,36 +1,37 @@
-import reactLogo from "./assets/react.svg";
-import { useState } from "react";
+import { useNeonStyles } from "./styles/neonStyles";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-import viteLogo from "/vite.svg";
+import { ConfigProvider } from "antd";
+
+import MainLayout from "./components/Layout/MainLayout";
+import AboutPage from "./pages/About/AboutPage";
+import ContactPage from "./pages/Contact/ContactPage";
+import HomePage from "./pages/Home/HomePage";
+import NotFoundPage from "./pages/NotFound/NotFoundPage";
+import ProjectsPage from "./pages/Projects/ProjectsPage";
+import { theme } from "./theme";
 
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { styles } = useNeonStyles();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" rel="noreferrer" target="_blank">
-          <img alt="Vite logo" className="logo" src={viteLogo} />
-        </a>
-        <a href="https://react.dev" rel="noreferrer" target="_blank">
-          <img alt="React logo" className="logo react" src={reactLogo} />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <ConfigProvider theme={theme}>
+      <Router>
+        <div className={styles.gradientBackground}>
+          <MainLayout>
+            <Routes>
+              <Route element={<HomePage />} path="/" />
+              <Route element={<AboutPage />} path="/about" />
+              <Route element={<ProjectsPage />} path="/projects" />
+              <Route element={<ContactPage />} path="/contact" />
+              <Route element={<NotFoundPage />} path="*" />
+            </Routes>
+          </MainLayout>
+        </div>
+      </Router>
+    </ConfigProvider>
   );
 }
 
