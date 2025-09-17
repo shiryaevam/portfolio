@@ -20,7 +20,7 @@ const CodeEditor: React.FC<CodeEditorProperties> = ({
     code
       .replaceAll(/(\/\/.*$)/gm, '<span class="comment">$1</span>')
       .replaceAll(
-          // eslint-disable-next-line sonarjs/regex-complexity
+        // eslint-disable-next-line sonarjs/regex-complexity
         /(\b(const|let|var|function|return|if|else|for|while|switch|case|break|continue|try|catch|finally|throw|new|this|class|extends|import|export|from|default|async|await|Promise|console|log|error|warn|info|debug|assert|clear|count|countReset|dir|dirxml|group|groupCollapsed|groupEnd|table|time|timeEnd|timeLog|timeStamp|trace)\b)/g,
         '<span class="keyword">$1</span>',
       )

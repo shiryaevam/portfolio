@@ -1,0 +1,217 @@
+/* Fira Code Font Family */
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./fonts/FiraCode-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./fonts/FiraCode-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./fonts/FiraCode-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./fonts/FiraCode-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./fonts/FiraCode-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Typography scale from design system */
+:root {
+  /* Font sizes */
+  --font-size-1: 14px;
+  --font-size-2: 16px;
+  --font-size-3: 18px;
+  --font-size-4: 20px;
+  --font-size-5: 24px;
+  --font-size-6: 30px;
+  --font-size-7: 36px;
+  --font-size-8: 48px;
+  --font-size-9: 60px;
+
+  /* Line heights */
+  --line-height-1: 140%; /* 19.6px */
+  --line-height-2: 150%; /* 24px */
+  --line-height-3: 150%; /* 27px */
+  --line-height-4: 150%; /* 30px */
+  --line-height-5: 140%; /* 33.6px */
+  --line-height-6: 140%; /* 42px */
+  --line-height-7: 130%; /* 46.8px */
+  --line-height-8: 120%; /* 57.6px */
+  --line-height-9: 110%; /* 66px */
+
+  /* Font family */
+  --font-family-primary: 'Fira Code', 'Courier New', monospace;
+
+  /* Border radius scale */
+  --radius-1: 2px;  /* checkboxes */
+  --radius-2: 4px;  /* icon boxes */
+  --radius-3: 8px;  /* buttons, backdrop, inputs */
+  --radius-4: 16px; /* cards */
+}
+
+/* Typography classes */
+.text-1 {
+  font-size: var(--font-size-1);
+  line-height: var(--line-height-1);
+}
+
+.text-2 {
+  font-size: var(--font-size-2);
+  line-height: var(--line-height-2);
+}
+
+.text-3 {
+  font-size: var(--font-size-3);
+  line-height: var(--line-height-3);
+}
+
+.text-4 {
+  font-size: var(--font-size-4);
+  line-height: var(--line-height-4);
+}
+
+.text-5 {
+  font-size: var(--font-size-5);
+  line-height: var(--line-height-5);
+}
+
+.text-6 {
+  font-size: var(--font-size-6);
+  line-height: var(--line-height-6);
+}
+
+.text-7 {
+  font-size: var(--font-size-7);
+  line-height: var(--line-height-7);
+}
+
+.text-8 {
+  font-size: var(--font-size-8);
+  line-height: var(--line-height-8);
+}
+
+.text-9 {
+  font-size: var(--font-size-9);
+  line-height: var(--line-height-9);
+}
+
+/* Heading styles */
+.h1 {
+  font-size: var(--font-size-9);
+  line-height: var(--line-height-9);
+  font-weight: 700;
+}
+
+.h2 {
+  font-size: var(--font-size-8);
+  line-height: var(--line-height-8);
+  font-weight: 600;
+}
+
+.h3 {
+  font-size: var(--font-size-7);
+  line-height: var(--line-height-7);
+  font-weight: 600;
+}
+
+.h4 {
+  font-size: var(--font-size-6);
+  line-height: var(--line-height-6);
+  font-weight: 500;
+}
+
+.h5 {
+  font-size: var(--font-size-5);
+  line-height: var(--line-height-5);
+  font-weight: 500;
+}
+
+.h6 {
+  font-size: var(--font-size-4);
+  line-height: var(--line-height-4);
+  font-weight: 500;
+}
+
+/* Body text styles */
+.body-small {
+  font-size: var(--font-size-1);
+  line-height: var(--line-height-1);
+  font-weight: 400;
+}
+
+.body-medium {
+  font-size: var(--font-size-2);
+  line-height: var(--line-height-2);
+  font-weight: 400;
+}
+
+.body-large {
+  font-size: var(--font-size-3);
+  line-height: var(--line-height-3);
+  font-weight: 400;
+}
+
+/* Border radius classes */
+.radius-1 {
+  border-radius: var(--radius-1);
+}
+
+.radius-2 {
+  border-radius: var(--radius-2);
+}
+
+.radius-3 {
+  border-radius: var(--radius-3);
+}
+
+.radius-4 {
+  border-radius: var(--radius-4);
+}
+
+.radius-checkbox {
+  border-radius: var(--radius-1);
+}
+
+.radius-icon-box {
+  border-radius: var(--radius-2);
+}
+
+.radius-button {
+  border-radius: var(--radius-3);
+}
+
+.radius-input {
+  border-radius: var(--radius-3);
+}
+
+.radius-backdrop {
+  border-radius: var(--radius-3);
+}
+
+.radius-card {
+  border-radius: var(--radius-4);
+}
