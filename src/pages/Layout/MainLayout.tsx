@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
-import { CustomHeader } from "@/components/CustomHeader/CustomHeader.tsx";
-import { Footer } from "@/components/Footer";
+import { CustomHeader } from "@components/CustomHeader/CustomHeader.tsx";
+import { Footer } from "@components/Footer";
 import { Layout } from "antd";
 
 import { useMainLayoutStyles } from "./MainLayoutStyles.ts";
