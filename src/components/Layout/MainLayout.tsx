@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import { MenuOutlined } from "@ant-design/icons";
 import { Button, Drawer, Layout, Menu } from "antd";
 
+import type { ItemType } from "antd/es/menu/interface";
+
 import { useMainLayoutStyles } from "./MainLayoutStyles";
 
 const MainLayout = () => {
@@ -13,7 +15,7 @@ const MainLayout = () => {
   const navigate = useNavigate();
   const { styles } = useMainLayoutStyles();
 
-  const menuItems = [
+  const menuItems: ItemType[] = [
     {
       label: "_hello",
       key: "/"
