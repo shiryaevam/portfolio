@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
-import Footer from "@/components/Footer";
+import { Footer } from "@/components/Footer";
 import { MenuOutlined } from "@ant-design/icons";
 import { Button, Drawer, Layout, Menu } from "antd";
 
 import type { ItemType } from "antd/es/menu/interface";
 
 import { useMainLayoutStyles } from "./MainLayoutStyles";
+
+const { Content } = Layout;
 
 const MainLayout = () => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
@@ -96,8 +98,9 @@ const MainLayout = () => {
       </Drawer>
 
       {/* Main Content */}
-      {/*<Content className={styles.mainContent}>{children}</Content>*/}
-      <Outlet />
+      <Content className={styles.mainContent}>
+        <Outlet />
+      </Content>
 
       {/* Footer */}
       <Footer />

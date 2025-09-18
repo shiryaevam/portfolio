@@ -18,9 +18,11 @@ export const useFooterStyles = createStyles(({ css }) => ({
 
   // Footer
   footer: css`
-    background: rgba(15, 23, 42, 0.95);
+    background: transparent;
     backdrop-filter: blur(10px);
-    border-top: 1px solid ${colors.slate[700]};
+    border: 1px solid ${colors.slate[700]};
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
     padding: 24px;
     margin-top: auto;
   `,

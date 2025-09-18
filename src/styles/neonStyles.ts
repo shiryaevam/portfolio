@@ -58,7 +58,7 @@ export const useNeonStyles = createStyles(({ css, token }) => ({
       height: 32px;
       background: linear-gradient(90deg, #21262d 0%, #30363d 100%);
       border-bottom: 1px solid #30363d;
-      z-index: 1;
+      z-index: 0;
     }
 
     &::after {
@@ -68,7 +68,7 @@ export const useNeonStyles = createStyles(({ css, token }) => ({
       left: 16px;
       color: #7d8590;
       font-size: 12px;
-      z-index: 2;
+      z-index: 0;
     }
 
     pre {

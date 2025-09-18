@@ -30,7 +30,7 @@ body {
 }
 
 #root {
-  min-height: 100dvh;
+  height: 100dvh;
   background: #020618;
   position: relative;
 }

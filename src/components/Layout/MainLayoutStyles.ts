@@ -116,21 +116,19 @@ export const useMainLayoutStyles = createStyles(
 
     // Header Navigation
     headerNavigation: css`
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: ${token.colorBgContainer};
+      background: transparent;
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid ${token.colorBorder};
+      border: 1px solid ${token.colorBorder};
       padding: 16px 24px;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
     `,
 
     // Основной layout
     layout: css`
-      min-height: 100vh;
+      height: 100dvh;
       background: transparent;
+      padding: 16px;
     `,
 
     // Logo
@@ -142,11 +140,21 @@ export const useMainLayoutStyles = createStyles(
 
     // Main Content
     mainContent: css`
+      overflow-y: scroll;
       margin: 0;
-      padding: 0;
       background: transparent;
-      min-height: 100vh;
-      padding-top: 80px; /* Account for fixed header */
+      border-left: solid 1px ${token.colorBorder};
+      border-right: solid 1px ${token.colorBorder};
+      /* Скрываем скроллбар для WebKit браузеров (Chrome, Safari, Edge) */
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Скрываем скроллбар для Firefox */
+      scrollbar-width: none;
+
+      /* Для старых версий IE */
+      -ms-overflow-style: none;
     `,
 
     // Mobile Drawer

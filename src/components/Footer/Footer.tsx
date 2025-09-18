@@ -6,7 +6,7 @@ import {
 
 import { useFooterStyles } from "./FooterStyles";
 
-const Footer = () => {
+export const Footer = () => {
   const { styles } = useFooterStyles();
 
   return (
@@ -43,5 +43,3 @@ const Footer = () => {
     </div>
   );
 };
-
-export default Footer;
