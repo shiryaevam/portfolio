@@ -72,32 +72,6 @@ const CodeEditor: React.FC<CodeEditorProperties> = ({
           }}
         />
       </pre>
-
-      <style jsx>{`
-        :global(.comment) {
-          color: #6a9955;
-          font-style: italic;
-        }
-        :global(.keyword) {
-          color: #569cd6;
-          font-weight: bold;
-        }
-        :global(.literal) {
-          color: #569cd6;
-        }
-        :global(.number) {
-          color: #b5cea8;
-        }
-        :global(.string) {
-          color: #ce9178;
-        }
-        :global(.function) {
-          color: #dcdcaa;
-        }
-        :global(.punctuation) {
-          color: #d4d4d4;
-        }
-      `}</style>
     </div>
   );
 };
