@@ -2,8 +2,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import { ConfigProvider } from "antd";
 
-import MainLayout from "./components/Layout/MainLayout";
 import HomePage from "./pages/Home/HomePage";
+import { MainLayout } from "./pages/Layout/MainLayout";
 import { theme } from "./theme";
 
 import "./App.css";
