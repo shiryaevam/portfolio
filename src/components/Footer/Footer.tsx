@@ -1,7 +1,7 @@
 import {
   GithubOutlined,
   LinkedinOutlined,
-  TwitterOutlined,
+  TwitterOutlined
 } from "@ant-design/icons";
 
 import { useFooterStyles } from "./FooterStyles";

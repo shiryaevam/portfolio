@@ -13,7 +13,7 @@ const NotFoundPage: React.FC = () => (
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      alignItems: "center",
+      alignItems: "center"
     }}
   >
     <Title
@@ -21,7 +21,7 @@ const NotFoundPage: React.FC = () => (
         fontSize: "120px",
         color: "#00ff88",
         margin: 0,
-        textShadow: "0 0 20px rgba(0, 255, 136, 0.5)",
+        textShadow: "0 0 20px rgba(0, 255, 136, 0.5)"
       }}
       level={1}
     >

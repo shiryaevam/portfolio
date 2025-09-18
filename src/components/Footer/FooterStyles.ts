@@ -62,5 +62,5 @@ export const useFooterStyles = createStyles(({ css }) => ({
     display: flex;
     gap: 16px;
     align-items: center;
-  `,
+  `
 }));

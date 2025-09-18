@@ -7,46 +7,46 @@ export const getBorderRadius = (step: keyof typeof borderRadius) =>
 // Border radius style objects for styled-components or inline styles
 export const borderRadiusStyles = {
   backdrop: {
-    borderRadius: getBorderRadius(3), // 8px
+    borderRadius: getBorderRadius(3) // 8px
   },
 
   // Buttons, inputs, and backdrop
   button: {
-    borderRadius: getBorderRadius(3), // 8px
+    borderRadius: getBorderRadius(3) // 8px
   },
 
   // Cards and large containers
   card: {
-    borderRadius: getBorderRadius(4), // 16px
+    borderRadius: getBorderRadius(4) // 16px
   },
 
   // Checkboxes and small elements
   checkbox: {
-    borderRadius: getBorderRadius(1), // 2px
+    borderRadius: getBorderRadius(1) // 2px
   },
 
   // Icon boxes and tags
   iconBox: {
-    borderRadius: getBorderRadius(2), // 4px
+    borderRadius: getBorderRadius(2) // 4px
   },
 
   input: {
-    borderRadius: getBorderRadius(3), // 8px
+    borderRadius: getBorderRadius(3) // 8px
   },
 
   // All radius steps
   radius1: {
-    borderRadius: getBorderRadius(1), // 2px
+    borderRadius: getBorderRadius(1) // 2px
   },
   radius2: {
-    borderRadius: getBorderRadius(2), // 4px
+    borderRadius: getBorderRadius(2) // 4px
   },
   radius3: {
-    borderRadius: getBorderRadius(3), // 8px
+    borderRadius: getBorderRadius(3) // 8px
   },
   radius4: {
-    borderRadius: getBorderRadius(4), // 16px
-  },
+    borderRadius: getBorderRadius(4) // 16px
+  }
 } as const;
 
 // CSS classes for border radius
@@ -60,7 +60,7 @@ export const borderRadiusClasses = {
   radius1: "radius-1",
   radius2: "radius-2",
   radius3: "radius-3",
-  radius4: "radius-4",
+  radius4: "radius-4"
 } as const;
 
 // CSS variables for border radius
@@ -68,5 +68,5 @@ export const borderRadiusCSSVars = {
   "--radius-1": getBorderRadius(1),
   "--radius-2": getBorderRadius(2),
   "--radius-3": getBorderRadius(3),
-  "--radius-4": getBorderRadius(4),
+  "--radius-4": getBorderRadius(4)
 } as const;

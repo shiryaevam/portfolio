@@ -11,7 +11,7 @@ interface CodeEditorProperties {
 const CodeEditor: React.FC<CodeEditorProperties> = ({
   height = "400px",
   language = "javascript",
-  value,
+  value
 }) => {
   const { styles } = useNeonStyles();
 
@@ -22,21 +22,21 @@ const CodeEditor: React.FC<CodeEditorProperties> = ({
       .replaceAll(
         // eslint-disable-next-line sonarjs/regex-complexity
         /(\b(const|let|var|function|return|if|else|for|while|switch|case|break|continue|try|catch|finally|throw|new|this|class|extends|import|export|from|default|async|await|Promise|console|log|error|warn|info|debug|assert|clear|count|countReset|dir|dirxml|group|groupCollapsed|groupEnd|table|time|timeEnd|timeLog|timeStamp|trace)\b)/g,
-        '<span class="keyword">$1</span>',
+        '<span class="keyword">$1</span>'
       )
       .replaceAll(
         /(\b(true|false|null|undefined|NaN|Infinity)\b)/g,
-        '<span class="literal">$1</span>',
+        '<span class="literal">$1</span>'
       )
       .replaceAll(/(\b\d+(\.\d+)?\b)/g, '<span class="number">$1</span>')
       .replaceAll(
         /(["'`])((?:\\.|(?!\1)[^\\])*?)\1/g,
-        '<span class="string">$1$2$1</span>',
+        '<span class="string">$1$2$1</span>'
       )
       .replaceAll(/(\w+)(\s*)(\()/g, '<span class="function">$1</span>$2$3')
       .replaceAll(
         /(\{|\}|\[|\]|\(|\)|;|,|\.)/g,
-        '<span class="punctuation">$1</span>',
+        '<span class="punctuation">$1</span>'
       );
 
   return (
@@ -48,7 +48,7 @@ const CodeEditor: React.FC<CodeEditorProperties> = ({
         lineHeight: "1.6",
         padding: "16px",
         overflow: "auto",
-        position: "relative",
+        position: "relative"
       }}
       className={styles.codeEditorStyle}
     >
@@ -57,18 +57,18 @@ const CodeEditor: React.FC<CodeEditorProperties> = ({
           margin: 0,
           whiteSpace: "pre-wrap",
           wordWrap: "break-word",
-          color: "#e5e5e5",
+          color: "#e5e5e5"
         }}
       >
         <code
           dangerouslySetInnerHTML={{
-            __html: highlightCode(value),
+            __html: highlightCode(value)
           }}
           style={{
             display: "block",
             fontFamily: "inherit",
             fontSize: "inherit",
-            lineHeight: "inherit",
+            lineHeight: "inherit"
           }}
         />
       </pre>

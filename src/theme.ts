@@ -16,7 +16,7 @@ export const colors = {
     700: "#b91c1c",
     800: "#991b1b",
     900: "#7f1d1d",
-    950: "#450a0a",
+    950: "#450a0a"
   },
 
   // Neutral colors
@@ -31,7 +31,7 @@ export const colors = {
     700: "#374151",
     800: "#1f2937",
     900: "#111827",
-    950: "#030712",
+    950: "#030712"
   },
 
   // Secondary / Indigo
@@ -46,7 +46,7 @@ export const colors = {
     700: "#4338ca",
     800: "#3730a3",
     900: "#312e81",
-    950: "#1e1b4b",
+    950: "#1e1b4b"
   },
 
   info: {
@@ -60,7 +60,7 @@ export const colors = {
     700: "#b45309",
     800: "#92400e",
     900: "#78350f",
-    950: "#451a03",
+    950: "#451a03"
   },
 
   // Primary / Orange
@@ -75,7 +75,7 @@ export const colors = {
     700: "#c2410c",
     800: "#9a3412",
     900: "#7c2d12",
-    950: "#431407",
+    950: "#431407"
   },
 
   // Accent / Purple
@@ -90,7 +90,7 @@ export const colors = {
     700: "#7c3aed",
     800: "#6b21a8",
     900: "#581c87",
-    950: "#3b0764",
+    950: "#3b0764"
   },
 
   // Secondary / Rose
@@ -105,7 +105,7 @@ export const colors = {
     700: "#be123c",
     800: "#9f1239",
     900: "#881337",
-    950: "#4c0519",
+    950: "#4c0519"
   },
 
   // Appearance / Slate
@@ -120,7 +120,7 @@ export const colors = {
     700: "#334155",
     800: "#1e293b",
     900: "#0f172a",
-    950: "#020618",
+    950: "#020618"
   },
 
   success: {
@@ -134,7 +134,7 @@ export const colors = {
     700: "#15803d",
     800: "#166534",
     900: "#14532d",
-    950: "#052e16",
+    950: "#052e16"
   },
 
   // Secondary / Teal
@@ -149,8 +149,8 @@ export const colors = {
     700: "#0f766e",
     800: "#115e59",
     900: "#134e4a",
-    950: "#042f2e",
-  },
+    950: "#042f2e"
+  }
 };
 
 // Spacing scale from design system
@@ -164,7 +164,7 @@ export const spacing = {
   6: "24px", // Step 6
   7: "32px", // Step 7
   8: "40px", // Step 8
-  9: "48px", // Step 9
+  9: "48px" // Step 9
 } as const;
 
 // Numeric spacing values for Ant Design tokens
@@ -178,7 +178,7 @@ export const spacingNumeric = {
   6: 24, // Step 6
   7: 32, // Step 7
   8: 40, // Step 8
-  9: 48, // Step 9
+  9: 48 // Step 9
 } as const;
 
 // Type definitions for spacing
@@ -190,7 +190,7 @@ export type SpacingValue = (typeof spacing)[SpacingKey];
 // Typography scale from design system
 export const typography = {
   fontFamily: {
-    primary: "'Fira Code', 'Courier New', monospace",
+    primary: "'Fira Code', 'Courier New', monospace"
   },
   fontSize: {
     1: 14, // Step 1
@@ -201,14 +201,14 @@ export const typography = {
     6: 30, // Step 6
     7: 36, // Step 7
     8: 48, // Step 8
-    9: 60, // Step 9
+    9: 60 // Step 9
   },
   fontWeight: {
     bold: 700,
     light: 300,
     medium: 500,
     regular: 400,
-    semiBold: 600,
+    semiBold: 600
   },
   lineHeight: {
     1: 1.4, // 140% (19.6px)
@@ -219,8 +219,8 @@ export const typography = {
     6: 1.4, // 140% (42px)
     7: 1.3, // 130% (46.8px)
     8: 1.2, // 120% (57.6px)
-    9: 1.1, // 110% (66px)
-  },
+    9: 1.1 // 110% (66px)
+  }
 } as const;
 
 // Type definitions for typography
@@ -233,7 +233,7 @@ export const borderRadius = {
   1: 2, // Step 1 - checkboxes
   2: 4, // Step 2 - icon boxes
   3: 8, // Step 3 - buttons, background backdrop, inputs
-  4: 16, // Step 4 - cards
+  4: 16 // Step 4 - cards
 } as const;
 
 // Type definitions for border radius
@@ -244,14 +244,14 @@ export const theme: ThemeConfig = {
   algorithm: antdTheme.darkAlgorithm,
   components: {
     Badge: {
-      borderRadius: borderRadius[2], // 4px - icon boxes
+      borderRadius: borderRadius[2] // 4px - icon boxes
     },
     Button: {
       borderRadius: borderRadius[3], // 8px - buttons
       defaultShadow: `0 2px 8px ${colors.purple[400]}20`,
       paddingBlock: spacingNumeric[2], // 4px
       paddingInline: spacingNumeric[4], // 12px
-      primaryShadow: `0 4px 12px ${colors.teal[400]}30`,
+      primaryShadow: `0 4px 12px ${colors.teal[400]}30`
     },
     Card: {
       borderRadius: borderRadius[4], // 16px - cards
@@ -259,17 +259,17 @@ export const theme: ThemeConfig = {
       colorBgContainer: colors.gray[800],
       colorBorder: colors.gray[700],
       padding: spacingNumeric[6], // 24px
-      paddingLG: spacingNumeric[8], // 40px
+      paddingLG: spacingNumeric[8] // 40px
     },
     Checkbox: {
-      borderRadius: borderRadius[1], // 2px - checkboxes
+      borderRadius: borderRadius[1] // 2px - checkboxes
     },
     Drawer: {
-      borderRadius: borderRadius[4], // 16px - cards
+      borderRadius: borderRadius[4] // 16px - cards
     },
     Form: {
       labelColor: colors.gray[200],
-      itemMarginBottom: spacingNumeric[5], // 16px
+      itemMarginBottom: spacingNumeric[5] // 16px
     },
     Input: {
       borderRadius: borderRadius[3], // 8px - inputs
@@ -278,13 +278,13 @@ export const theme: ThemeConfig = {
       colorText: colors.gray[50],
       colorTextPlaceholder: colors.gray[500],
       paddingBlock: spacingNumeric[2], // 4px
-      paddingInline: spacingNumeric[3], // 8px
+      paddingInline: spacingNumeric[3] // 8px
     },
     Layout: {
       siderBg: colors.gray[900],
       bodyBg: colors.gray[950],
       headerBg: colors.gray[900],
-      padding: spacingNumeric[6], // 24px
+      padding: spacingNumeric[6] // 24px
     },
     Menu: {
       darkItemBg: "transparent",
@@ -293,23 +293,23 @@ export const theme: ThemeConfig = {
       darkItemHoverColor: colors.purple[400],
       darkItemSelectedBg: `${colors.teal[400]}10`,
       darkItemSelectedColor: colors.teal[400],
-      itemPaddingInline: spacingNumeric[4], // 12px
+      itemPaddingInline: spacingNumeric[4] // 12px
     },
     Modal: {
-      borderRadius: borderRadius[4], // 16px - cards
+      borderRadius: borderRadius[4] // 16px - cards
     },
     Radio: {
-      borderRadius: borderRadius[1], // 2px - checkboxes
+      borderRadius: borderRadius[1] // 2px - checkboxes
     },
     Switch: {
-      borderRadius: borderRadius[1], // 2px - checkboxes
+      borderRadius: borderRadius[1] // 2px - checkboxes
     },
     Tag: {
-      borderRadius: borderRadius[2], // 4px - icon boxes
+      borderRadius: borderRadius[2] // 4px - icon boxes
     },
     Tooltip: {
-      borderRadius: borderRadius[3], // 8px - buttons/inputs
-    },
+      borderRadius: borderRadius[3] // 8px - buttons/inputs
+    }
   },
   token: {
     // Радиусы (используем borderRadius scale)
@@ -368,6 +368,6 @@ export const theme: ThemeConfig = {
     padding: spacingNumeric[5], // 16px
     paddingLG: spacingNumeric[6], // 24px
     paddingSM: spacingNumeric[3], // 8px
-    paddingXS: spacingNumeric[2], // 4px
-  },
+    paddingXS: spacingNumeric[2] // 4px
+  }
 };

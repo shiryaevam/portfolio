@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import {
   LoadingOutlined,
   PauseCircleOutlined,
-  PlayCircleOutlined,
+  PlayCircleOutlined
 } from "@ant-design/icons";
 import { Button, Col, Row, Typography } from "antd";
 
@@ -14,7 +14,7 @@ const { Paragraph, Title } = Typography;
 
 const HomePage: React.FC = () => {
   const [gameState, setGameState] = useState<"idle" | "loading" | "playing">(
-    "idle",
+    "idle"
   );
   const [progress, setProgress] = useState(0);
   const { styles } = useNeonStyles();
@@ -121,14 +121,14 @@ explorePortfolio();`;
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              animation: "slideInLeft 0.8s ease-out",
+              animation: "slideInLeft 0.8s ease-out"
             }}
           >
             <Title
               style={{
                 fontSize: "4rem",
                 marginBottom: "2rem",
-                textAlign: "center",
+                textAlign: "center"
               }}
               className={styles.neonText}
               level={1}
@@ -148,7 +148,7 @@ explorePortfolio();`;
                 padding: "2rem",
                 textAlign: "center",
                 marginBottom: "2rem",
-                transition: "transform 0.3s ease",
+                transition: "transform 0.3s ease"
               }}
               className={styles.gameInterface}
             >
@@ -171,7 +171,7 @@ explorePortfolio();`;
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "8px",
+                    gap: "8px"
                   }}
                   className={styles.neonButton}
                   icon={getButtonIcon()}
@@ -197,7 +197,7 @@ explorePortfolio();`;
                         background:
                           "linear-gradient(90deg, #00ff88 0%, #8b5cf6 100%)",
                         borderRadius: "20px",
-                        transition: "width 0.1s ease",
+                        transition: "width 0.1s ease"
                       }}
                     />
                   </div>
@@ -214,7 +214,7 @@ explorePortfolio();`;
                 fontSize: "1.1rem",
                 textAlign: "center",
                 maxWidth: "400px",
-                margin: "0 auto",
+                margin: "0 auto"
               }}
             >
               Full Stack Developer passionate about creating innovative digital
@@ -227,7 +227,7 @@ explorePortfolio();`;
         <Col lg={12} xs={24}>
           <div
             style={{
-              height: "100%",
+              height: "100%"
             }}
           >
             <Title level={3} style={{ color: "#8b5cf6", marginBottom: "1rem" }}>

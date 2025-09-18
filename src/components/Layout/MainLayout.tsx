@@ -16,20 +16,20 @@ const MainLayout = () => {
   const menuItems = [
     {
       label: "_hello",
-      key: "/",
+      key: "/"
     },
     {
       label: "_about-me",
-      key: "/about",
+      key: "/about"
     },
     {
       label: "_projects",
-      key: "/projects",
+      key: "/projects"
     },
     {
       label: "_contact-me",
-      key: "/contact",
-    },
+      key: "/contact"
+    }
   ];
 
   const handleMenuClick = (key: string) => {
@@ -72,12 +72,12 @@ const MainLayout = () => {
         styles={{
           body: {
             background: "linear-gradient(180deg, #0f172a 0%, #020617 100%)",
-            padding: "24px",
+            padding: "24px"
           },
           header: {
             background: "linear-gradient(180deg, #0f172a 0%, #020617 100%)",
-            borderBottom: "1px solid #334155",
-          },
+            borderBottom: "1px solid #334155"
+          }
         }}
         className={styles.mobileDrawer}
         onClose={() => setMobileMenuVisible(false)}

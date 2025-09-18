@@ -279,5 +279,5 @@ export const useNeonStyles = createStyles(({ css, token }) => ({
       0 0 5px rgba(139, 92, 246, 0.5),
       0 0 10px rgba(139, 92, 246, 0.3),
       0 0 15px rgba(139, 92, 246, 0.1);
-  `,
+  `
 }));

@@ -16,106 +16,106 @@ export const typographyStyles = {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(3),
     fontWeight: getFontWeight("regular"),
-    lineHeight: getLineHeight(3),
+    lineHeight: getLineHeight(3)
   },
   bodyMedium: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(2),
     fontWeight: getFontWeight("regular"),
-    lineHeight: getLineHeight(2),
+    lineHeight: getLineHeight(2)
   },
   // Body text styles
   bodySmall: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(1),
     fontWeight: getFontWeight("regular"),
-    lineHeight: getLineHeight(1),
+    lineHeight: getLineHeight(1)
   },
   // Heading styles
   h1: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(9),
     fontWeight: getFontWeight("bold"),
-    lineHeight: getLineHeight(9),
+    lineHeight: getLineHeight(9)
   },
   h2: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(8),
     fontWeight: getFontWeight("semiBold"),
-    lineHeight: getLineHeight(8),
+    lineHeight: getLineHeight(8)
   },
   h3: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(7),
     fontWeight: getFontWeight("semiBold"),
-    lineHeight: getLineHeight(7),
+    lineHeight: getLineHeight(7)
   },
 
   h4: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(6),
     fontWeight: getFontWeight("medium"),
-    lineHeight: getLineHeight(6),
+    lineHeight: getLineHeight(6)
   },
   h5: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(5),
     fontWeight: getFontWeight("medium"),
-    lineHeight: getLineHeight(5),
+    lineHeight: getLineHeight(5)
   },
   h6: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(4),
     fontWeight: getFontWeight("medium"),
-    lineHeight: getLineHeight(4),
+    lineHeight: getLineHeight(4)
   },
 
   // Text scale styles
   text1: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(1),
-    lineHeight: getLineHeight(1),
+    lineHeight: getLineHeight(1)
   },
   text2: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(2),
-    lineHeight: getLineHeight(2),
+    lineHeight: getLineHeight(2)
   },
   text3: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(3),
-    lineHeight: getLineHeight(3),
+    lineHeight: getLineHeight(3)
   },
   text4: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(4),
-    lineHeight: getLineHeight(4),
+    lineHeight: getLineHeight(4)
   },
   text5: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(5),
-    lineHeight: getLineHeight(5),
+    lineHeight: getLineHeight(5)
   },
   text6: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(6),
-    lineHeight: getLineHeight(6),
+    lineHeight: getLineHeight(6)
   },
   text7: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(7),
-    lineHeight: getLineHeight(7),
+    lineHeight: getLineHeight(7)
   },
   text8: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(8),
-    lineHeight: getLineHeight(8),
+    lineHeight: getLineHeight(8)
   },
   text9: {
     fontFamily: typography.fontFamily.primary,
     fontSize: getFontSize(9),
-    lineHeight: getLineHeight(9),
-  },
+    lineHeight: getLineHeight(9)
+  }
 } as const;
 
 // CSS classes for typography
@@ -137,5 +137,5 @@ export const typographyClasses = {
   text6: "text-6",
   text7: "text-7",
   text8: "text-8",
-  text9: "text-9",
+  text9: "text-9"
 } as const;

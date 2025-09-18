@@ -1,6 +1,6 @@
 import {
   borderRadiusClasses,
-  borderRadiusStyles,
+  borderRadiusStyles
 } from "../../styles/borderRadius";
 import React from "react";
 
@@ -22,7 +22,7 @@ const BorderRadiusExample: React.FC = () => (
             alignItems: "center",
             justifyContent: "center",
             color: "white",
-            fontSize: "12px",
+            fontSize: "12px"
           }}
           className={borderRadiusClasses.radius1}
         >
@@ -33,7 +33,7 @@ const BorderRadiusExample: React.FC = () => (
             width: "20px",
             height: "20px",
             backgroundColor: "#6b7280",
-            border: "2px solid #9ca3af",
+            border: "2px solid #9ca3af"
           }}
           className={borderRadiusClasses.checkbox}
         />
@@ -52,7 +52,7 @@ const BorderRadiusExample: React.FC = () => (
             alignItems: "center",
             justifyContent: "center",
             color: "white",
-            fontSize: "20px",
+            fontSize: "20px"
           }}
           className={borderRadiusClasses.radius2}
         >
@@ -67,7 +67,7 @@ const BorderRadiusExample: React.FC = () => (
             alignItems: "center",
             justifyContent: "center",
             color: "white",
-            fontSize: "20px",
+            fontSize: "20px"
           }}
           className={borderRadiusClasses.iconBox}
         >
@@ -83,7 +83,7 @@ const BorderRadiusExample: React.FC = () => (
           display: "flex",
           gap: "16px",
           marginTop: "16px",
-          flexWrap: "wrap",
+          flexWrap: "wrap"
         }}
       >
         <button
@@ -92,7 +92,7 @@ const BorderRadiusExample: React.FC = () => (
             backgroundColor: "#2dd4bf",
             color: "white",
             border: "none",
-            cursor: "pointer",
+            cursor: "pointer"
           }}
           className={borderRadiusClasses.radius3}
         >
@@ -104,7 +104,7 @@ const BorderRadiusExample: React.FC = () => (
             backgroundColor: "#374151",
             color: "white",
             border: "1px solid #6b7280",
-            outline: "none",
+            outline: "none"
           }}
           className={borderRadiusClasses.input}
           placeholder="Input field"
@@ -113,7 +113,7 @@ const BorderRadiusExample: React.FC = () => (
           style={{
             padding: "16px",
             backgroundColor: "#1f2937",
-            border: "1px solid #374151",
+            border: "1px solid #374151"
           }}
           className={borderRadiusClasses.backdrop}
         >
@@ -129,7 +129,7 @@ const BorderRadiusExample: React.FC = () => (
           display: "flex",
           gap: "16px",
           marginTop: "16px",
-          flexWrap: "wrap",
+          flexWrap: "wrap"
         }}
       >
         <div
@@ -137,7 +137,7 @@ const BorderRadiusExample: React.FC = () => (
             padding: "24px",
             backgroundColor: "#1f2937",
             border: "1px solid #374151",
-            width: "200px",
+            width: "200px"
           }}
           className={borderRadiusClasses.radius4}
         >
@@ -149,7 +149,7 @@ const BorderRadiusExample: React.FC = () => (
             padding: "24px",
             backgroundColor: "#111827",
             border: "1px solid #374151",
-            width: "200px",
+            width: "200px"
           }}
           className={borderRadiusClasses.card}
         >
@@ -168,7 +168,7 @@ const BorderRadiusExample: React.FC = () => (
           padding: "24px",
           backgroundColor: "#1f2937",
           border: "1px solid #374151",
-          marginTop: "16px",
+          marginTop: "16px"
         }}
         className={borderRadiusClasses.backdrop}
       >
@@ -180,7 +180,7 @@ const BorderRadiusExample: React.FC = () => (
             padding: "16px",
             backgroundColor: "#111827",
             border: "1px solid #374151",
-            marginBottom: "12px",
+            marginBottom: "12px"
           }}
           className={borderRadiusClasses.card}
         >
@@ -191,7 +191,7 @@ const BorderRadiusExample: React.FC = () => (
             style={{
               width: "16px",
               height: "16px",
-              backgroundColor: "#6b7280",
+              backgroundColor: "#6b7280"
             }}
             className={borderRadiusClasses.checkbox}
           />
@@ -199,7 +199,7 @@ const BorderRadiusExample: React.FC = () => (
             style={{
               width: "24px",
               height: "24px",
-              backgroundColor: "#8b5cf6",
+              backgroundColor: "#8b5cf6"
             }}
             className={borderRadiusClasses.iconBox}
           />
@@ -209,7 +209,7 @@ const BorderRadiusExample: React.FC = () => (
               backgroundColor: "#2dd4bf",
               color: "white",
               border: "none",
-              fontSize: "12px",
+              fontSize: "12px"
             }}
             className={borderRadiusClasses.button}
           >

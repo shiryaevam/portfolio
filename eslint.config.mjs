@@ -1,10 +1,11 @@
+import prettierConfig from "eslint-config-prettier";
 import nimbusCleanPlugin from "eslint-plugin-nimbus-clean";
 import globals from "globals";
 import tsLint from "typescript-eslint";
 
 export default tsLint.config(
   ...nimbusCleanPlugin.configs.recommended,
-  // Other configs
+  prettierConfig, // Отключает правила ESLint, которые конфликтуют с Prettier
 
   { ignores: ["dist"] },
   {
@@ -22,6 +23,12 @@ export default tsLint.config(
           ignore: [String.raw`^/.*\.svg$`],
         },
       ],
+      indent: "off", // Отключаем правило отступов
+      // Отключаем правила, которые могут конфликтовать с Prettier
+      "linebreak-style": "off", // Отключаем правило для окончаний строк
+      "max-len": "off", // Отключаем ограничение длины строки
+      quotes: "off", // Отключаем правило кавычек
+      semi: "off", // Отключаем правило точки с запятой
     },
     settings: {
       "import/resolver": {
