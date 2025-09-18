@@ -12,34 +12,34 @@ export default tsLint.config(
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
-    },
+      globals: globals.browser
+    }
   },
   {
     rules: {
       "import/no-unresolved": [
         "error",
         {
-          ignore: [String.raw`^/.*\.svg$`],
-        },
+          ignore: [String.raw`^/.*\.svg$`]
+        }
       ],
       indent: "off", // Отключаем правило отступов
       // Отключаем правила, которые могут конфликтовать с Prettier
       "linebreak-style": "off", // Отключаем правило для окончаний строк
       "max-len": "off", // Отключаем ограничение длины строки
       quotes: "off", // Отключаем правило кавычек
-      semi: "off", // Отключаем правило точки с запятой
+      semi: "off" // Отключаем правило точки с запятой
     },
     settings: {
       "import/resolver": {
         node: {
-          extensions: [".js", ".jsx", ".ts", ".tsx", ".svg", ".json"],
+          extensions: [".js", ".jsx", ".ts", ".tsx", ".svg", ".json"]
         },
         typescript: {
           alwaysTryTypes: true,
-          project: "./tsconfig.app.json",
-        },
-      },
-    },
-  },
+          project: "./tsconfig.app.json"
+        }
+      }
+    }
+  }
 );

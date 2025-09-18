@@ -27,7 +27,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "/*": ["./public/*"]
+      "@public": ["./public/*"],
+      "@styles": ["./src/styles/index.ts"]
     },
     "allowSyntheticDefaultImports": true
   },

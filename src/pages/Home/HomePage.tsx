@@ -1,5 +1,5 @@
-import { useNeonStyles } from "../../styles/neonStyles";
-import React, { useState } from "react";
+import { useNeonStyles } from "@styles";
+import { useState } from "react";
 
 import {
   LoadingOutlined,
