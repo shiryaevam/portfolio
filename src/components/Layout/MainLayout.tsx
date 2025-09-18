@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import Footer from "@/components/Footer";
 import { MenuOutlined } from "@ant-design/icons";
@@ -68,7 +68,7 @@ const MainLayout = () => {
 
       {/* Mobile Drawer */}
       <Drawer
-        title={<div className={styles.drawerTitle}>michael-weaver</div>}
+        title={<div className={styles.drawerTitle}>aleksey-shiryaev</div>}
         styles={{
           body: {
             background: "linear-gradient(180deg, #0f172a 0%, #020617 100%)",
@@ -95,7 +95,7 @@ const MainLayout = () => {
 
       {/* Main Content */}
       {/*<Content className={styles.mainContent}>{children}</Content>*/}
-      {/*<Outlet />*/}
+      <Outlet />
 
       {/* Footer */}
       <Footer />

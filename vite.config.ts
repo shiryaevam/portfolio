@@ -13,36 +13,52 @@ export default defineConfig({
       output: {
         manualChunks: {
           // React экосистема
-          react: ["react", "react-dom"],
+          react: ["react", "react-dom"]
 
           // Библиотеки UI
           // ui: ["react-router-dom", "styled-components"],
 
           // Утилиты
           // utils: ["lodash", "date-fns"],
-        },
-      },
+        }
+      }
     },
     sourcemap: false, // Отключить в продакшене
     terserOptions: {
       compress: {
         drop_console: true, // Удалить console.log в продакшене
         drop_debugger: true, // Удалить debugger
-        passes: 2, // Количество проходов оптимизации
+        passes: 2 // Количество проходов оптимизации
       },
       format: {
-        comments: false, // Удалить комментарии
+        comments: false // Удалить комментарии
       },
       mangle: {
-        toplevel: true, // Минифицировать глобальные переменные
-      },
-    },
+        toplevel: true // Минифицировать глобальные переменные
+      }
+    }
   },
-  plugins: [react()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          [
+            "babel-plugin-antd-style",
+            {
+              libraryDirectory: "lib",
+              // Опции плагина (необязательно)
+              libraryName: "antd-style",
+              style: true // или 'css' для импорта CSS файлов
+            }
+          ]
+        ]
+      }
+    })
+  ],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("src", import.meta.url)),
-      "/": fileURLToPath(new URL("public", import.meta.url)),
-    },
-  },
+      "/": fileURLToPath(new URL("public", import.meta.url))
+    }
+  }
 });

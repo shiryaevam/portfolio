@@ -89,10 +89,10 @@ const HomePage: React.FC = () => {
     }
   };
 
-  const sampleCode = `// Welcome to Michael Weaver's Portfolio
+  const sampleCode = `// Welcome to Aleksey Shiryaev Portfolio
 const developer = {
-  name: "Michael Weaver",
-  role: "Full Stack Developer",
+  name: "Aleksey Shiryaev",
+  role: "Frontend developer",
   skills: ["React", "TypeScript", "Node.js", "Python"],
   experience: "5+ years",
   passion: "Creating amazing digital experiences"
@@ -133,7 +133,7 @@ explorePortfolio();`;
               className={styles.neonText}
               level={1}
             >
-              Michael Weaver
+              Aleksey Shiryaev
             </Title>
 
             {/* Interactive Game Interface */}

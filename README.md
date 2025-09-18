@@ -1,4 +1,4 @@
-# 🚀 Michael Weaver Portfolio
+# 🚀 Aleksey Shiryaev Portfolio
 
 Современное портфолио разработчика с темной темой, неоновыми эффектами и интерактивными элементами.
 
@@ -111,33 +111,6 @@ src/
 - Вертикальная компоновка
 - Оптимизированные размеры
 
-## 🎨 CSS анимации
-
-```css
-/* Появление слева */
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-50px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-/* Появление справа */
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(50px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-/* Плавное появление */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Пульсация */
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
-  50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
-}
-```
 
 ## 🚀 Запуск проекта
 

@@ -28,6 +28,7 @@
     "@types/react-dom": "^19.1.7",
     "@typescript-eslint/eslint-plugin": "8.27.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "babel-plugin-antd-style": "^1.0.4",
     "eslint": "9.22.0",
     "eslint-config-prettier": "10.1.1",
     "eslint-import-resolver-typescript": "4.2.2",
