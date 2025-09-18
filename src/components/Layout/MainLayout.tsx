@@ -1,22 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import {
-  GithubOutlined,
-  LinkedinOutlined,
-  TwitterOutlined,
-} from "@ant-design/icons";
-import { Drawer, Layout, Menu } from "antd";
+import Footer from "@/components/Footer";
+import { MenuOutlined } from "@ant-design/icons";
+import { Button, Drawer, Layout, Menu } from "antd";
 
 import { useMainLayoutStyles } from "./MainLayoutStyles";
 
-const { Content } = Layout;
-
-interface MainLayoutProperties {
-  children: React.ReactNode;
-}
-
-const MainLayout: React.FC<MainLayoutProperties> = ({ children }) => {
+const MainLayout = () => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -52,7 +43,7 @@ const MainLayout: React.FC<MainLayoutProperties> = ({ children }) => {
       <div className={styles.headerNavigation}>
         <div className={styles.headerContainer}>
           {/* Logo */}
-          <div className={styles.logo}>michael-weaver</div>
+          <div className={styles.logo}>aleksey-shiryaev</div>
 
           {/* Desktop Navigation */}
           <div className={styles.desktopNav}>
@@ -64,6 +55,14 @@ const MainLayout: React.FC<MainLayoutProperties> = ({ children }) => {
               selectedKeys={[location.pathname]}
             />
           </div>
+
+          {/* Mobile Menu Button */}
+          <Button
+            className={styles.mobileMenuBtn}
+            icon={<MenuOutlined />}
+            onClick={() => setMobileMenuVisible(true)}
+            type="text"
+          />
         </div>
       </div>
 
@@ -95,40 +94,11 @@ const MainLayout: React.FC<MainLayoutProperties> = ({ children }) => {
       </Drawer>
 
       {/* Main Content */}
-      <Content className={styles.mainContent}>{children}</Content>
+      {/*<Content className={styles.mainContent}>{children}</Content>*/}
+      {/*<Outlet />*/}
 
       {/* Footer */}
-      <div className={styles.footer}>
-        <div className={styles.footerContainer}>
-          <div className={styles.footerText}>find me in:</div>
-          <div className={styles.socialLinks}>
-            <a
-              className={`${styles.codeLink} ${styles.socialLink}`}
-              href="https://twitter.com"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <TwitterOutlined />
-            </a>
-            <a
-              className={`${styles.codeLink} ${styles.socialLink}`}
-              href="https://linkedin.com"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <LinkedinOutlined />
-            </a>
-            <a
-              className={`${styles.codeLink} ${styles.socialLink}`}
-              href="https://github.com"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <GithubOutlined />
-            </a>
-          </div>
-        </div>
-      </div>
+      <Footer />
     </Layout>
   );
 };
