@@ -43,7 +43,7 @@
 
 ### TypeScript утилиты
 
-```typescript
+```typescript jsx
 import { typographyStyles, typographyClasses } from '../styles/typography';
 
 // Использование стилей
@@ -101,7 +101,7 @@ const fontWeight = typography.fontWeight.bold; // 700
 
 #### TypeScript утилиты
 
-```typescript
+```typescript jsx
 import { borderRadiusStyles, borderRadiusClasses } from '../styles/borderRadius';
 
 // Использование стилей
@@ -130,5 +130,3 @@ const radiusPx = `${borderRadius[3]}px`; // "8px"
 - `src/theme.ts` - Конфигурация типографики и радиусов для Ant Design
 - `src/styles/typography.ts` - Утилиты и стили для типографики
 - `src/styles/borderRadius.ts` - Утилиты и стили для радиусов
-- `src/components/Typography/TypographyExample.tsx` - Пример типографики
-- `src/components/BorderRadius/BorderRadiusExample.tsx` - Пример радиусов
