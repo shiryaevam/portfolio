@@ -1,6 +1,5 @@
+import { colors } from "@styles";
 import { createStyles } from "antd-style";
-
-import { colors } from "@/theme.ts";
 
 export const useFooterStyles = createStyles(({ css }) => ({
   // Стили для ссылок в стиле кода

@@ -26,7 +26,6 @@
     /* Path mapping */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
       "@public": ["./public/*"],
       "@styles": ["./src/styles/index.ts"],
       "@components/*": ["./src/components/*"]

@@ -1,4 +1,4 @@
-import { borderRadius } from "../theme";
+import { borderRadius } from "./theme.ts";
 
 // Border radius utility functions
 export const getBorderRadius = (step: keyof typeof borderRadius) =>

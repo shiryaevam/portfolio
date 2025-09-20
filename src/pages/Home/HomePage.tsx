@@ -12,7 +12,7 @@ import CodeEditor from "../../components/CodeEditor/CodeEditor";
 
 const { Paragraph, Title } = Typography;
 
-const HomePage: React.FC = () => {
+export const HomePage = () => {
   const [gameState, setGameState] = useState<"idle" | "loading" | "playing">(
     "idle"
   );
@@ -248,4 +248,3 @@ explorePortfolio();`;
   );
 };
 
-export default HomePage;

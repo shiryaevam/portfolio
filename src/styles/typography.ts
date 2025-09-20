@@ -1,4 +1,4 @@
-import { typography } from "../theme";
+import { typography } from "./theme.ts";
 
 // Typography utility functions
 export const getFontSize = (step: keyof typeof typography.fontSize) =>
