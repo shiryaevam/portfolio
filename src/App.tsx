@@ -1,36 +1,28 @@
-import reactLogo from "./assets/react.svg";
-import { useState } from "react";
+import { theme } from "@styles";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-import viteLogo from "/vite.svg";
+import { ConfigProvider } from "antd";
+
+import { HomePage } from "./pages/Home";
+import { MainLayout } from "./pages/Layout";
 
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" rel="noreferrer" target="_blank">
-          <img alt="Vite logo" className="logo" src={viteLogo} />
-        </a>
-        <a href="https://react.dev" rel="noreferrer" target="_blank">
-          <img alt="React logo" className="logo react" src={reactLogo} />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <ConfigProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route element={<MainLayout />} path="/">
+            <Route element={<HomePage />} path="/" />
+            {/*<Route element={<AboutPage />} path="/about" />*/}
+            {/*<Route element={<ProjectsPage />} path="/projects" />*/}
+            {/*<Route element={<ContactPage />} path="/contact" />*/}
+            {/*<Route element={<NotFoundPage />} path="*" />*/}
+          </Route>
+        </Routes>
+      </Router>
+    </ConfigProvider>
   );
 }
 
