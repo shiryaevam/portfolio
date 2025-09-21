@@ -64,6 +64,7 @@ export const borderRadiusClasses = {
 } as const;
 
 // CSS variables for border radius
+// eslint-disable-next-line unicorn/prevent-abbreviations
 export const borderRadiusCSSVars = {
   "--radius-1": getBorderRadius(1),
   "--radius-2": getBorderRadius(2),

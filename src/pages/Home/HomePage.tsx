@@ -10,7 +10,7 @@ export const HomePage = () => {
   return (
     <Flex align={"center"} justify={"center"} vertical>
       <Flex className={styles.container}>
-        <div>Introduction</div>
+        <div>2</div>
         <div>link</div>
         <BackgroundBlurs />
       </Flex>

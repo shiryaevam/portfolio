@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useNeonStyles } from "../../styles/neonStyles";
 import React from "react";
 
@@ -10,7 +11,6 @@ interface CodeEditorProperties {
 
 const CodeEditor: React.FC<CodeEditorProperties> = ({
   height = "400px",
-  language = "javascript",
   value
 }) => {
   const { styles } = useNeonStyles();

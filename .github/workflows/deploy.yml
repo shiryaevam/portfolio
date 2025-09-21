@@ -3,10 +3,24 @@ name: Deploy Pipeline
 on:
   push:
     branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '22'
 
 jobs:
-  quality-check:
+  test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -14,8 +28,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'yarn'
+          cache-dependency-path: yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -28,7 +43,8 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: quality-check
+    needs: test
+    timeout-minutes: 15
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,8 +52,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'yarn'
+          cache-dependency-path: yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -46,45 +63,21 @@ jobs:
         run: yarn build
 
       - name: Upload build artifacts
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
           name: build-output
           path: dist/
+          retention-days: 2
 
-  deploy-prod:
+  deploy-production:
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/main'
+    environment: production
+    timeout-minutes: 20
     steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-output
-          path: dist/
-
-      - name: Check server connectivity
-        run: |
-          echo "🔍 Checking server connectivity..."
-          echo "Host: ${{ secrets.SSH_HOST }}"
-          echo "Port: ${{ secrets.SSH_PORT }}"
-          ping -c 3 ${{ secrets.SSH_HOST }} || echo "⚠️ Ping failed"
-          nc -zv ${{ secrets.SSH_HOST }} ${{ secrets.SSH_PORT }} || echo "⚠️ Port ${{ secrets.SSH_PORT }} not accessible"
-          
-      - name: Test SSH connection
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          port:  ${{ secrets.SSH_PORT }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          script: |
-            echo "✅ SSH connection successful!"
-            echo "👤 User: $(whoami)"
-            echo "📁 Directory: $(pwd)"
-            echo "📅 Time: $(date)"
-
-      - name: Deploy to Production
+      - name: Deploy to Production Server
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -93,44 +86,103 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            echo "🚀 Starting deployment..."
-            echo "📅 Time: $(date)"
-            echo "👤 User: $(whoami)"
-            echo "📁 Current directory: $(pwd)"
+            set -euo pipefail
+            echo "🚀 Начинаем деплой..."
+            echo "📅 Время: $(date)"
+            echo "👤 Пользователь: $(whoami)"
+            echo "📁 Домашняя папка: $(pwd)"
             
-            cd ~/portfolio
-            echo "📁 Changed to: $(pwd)"
+            # Шаг 1: Проверяем текущее состояние
+            echo "📋 Шаг 1: Проверяем состояние сервера"
+            echo "💾 Свободное место:"
+            df -h ~
+            echo "📂 Содержимое домашней папки:"
+            ls -la ~
             
-            # Check if docker-compose.yml exists
-            if [ ! -f "docker-compose.yml" ]; then
-              echo "❌ docker-compose.yml not found!"
-              echo "📋 Files in directory:"
+            # Шаг 2: Переходим в папку проекта
+            echo "📋 Шаг 2: Переходим в папку проекта"
+            if [ -d "$HOME/portfolio" ]; then
+              echo "✅ Папка ~/portfolio существует"
+              cd ~/portfolio
+              echo "📁 Текущая папка: $(pwd)"
+              echo "📂 Содержимое папки portfolio:"
+              ls -la
+              
+              # Если это не git репозиторий, но папка не пустая
+              if [ ! -d ".git" ] && [ "$(ls -A . 2>/dev/null)" ]; then
+                echo "🧹 Папка не пустая, но не является git репозиторием"
+                echo "📦 Сохраняем существующие файлы..."
+                mkdir -p ../portfolio-backup-$(date +%Y%m%d-%H%M%S)
+                mv * ../portfolio-backup-$(date +%Y%m%d-%H%M%S)/ 2>/dev/null || true
+                mv .* ../portfolio-backup-$(date +%Y%m%d-%H%M%S)/ 2>/dev/null || true
+                echo "📥 Клонируем репозиторий..."
+                git clone https://github.com/shiryaevam/portfolio.git .
+              fi
+            else
+              echo "❌ Папка ~/portfolio не найдена!"
+              echo "📦 Создаем папку и клонируем репозиторий..."
+              mkdir -p ~/portfolio
+              cd ~/portfolio
+              git clone https://github.com/shiryaevam/portfolio.git .
+              echo "✅ Репозиторий склонирован"
+            fi
+            
+            # Шаг 3: Проверяем Git репозиторий
+            echo "📋 Шаг 3: Проверяем Git репозиторий"
+            if [ -d ".git" ]; then
+              echo "✅ Git репозиторий найден"
+              echo "🔗 Текущий remote:"
+              git remote -v
+              echo "🌿 Текущая ветка:"
+              git branch
+              echo "📝 Последний коммит:"
+              git log -1 --oneline
+            else
+              echo "❌ Git репозиторий не найден!"
+              exit 1
+            fi
+            
+            # Шаг 4: Проверяем docker-compose.yml
+            echo "📋 Шаг 4: Проверяем docker-compose.yml"
+            if [ -f "docker-compose.yml" ]; then
+              echo "✅ docker-compose.yml найден"
+            else
+              echo "❌ docker-compose.yml не найден!"
+              echo "📂 Файлы в текущей папке:"
               ls -la
               exit 1
             fi
             
-            # Check Docker
-            echo "🐳 Docker status:"
-            docker --version || echo "❌ Docker not installed"
-            docker-compose --version || echo "❌ Docker Compose not installed"
+            # Шаг 5: Останавливаем контейнеры
+            echo "📋 Шаг 5: Останавливаем контейнеры"
+            if docker compose -p portfolio ps | grep -q "Up"; then
+              echo "🛑 Останавливаем запущенные контейнеры..."
+              docker compose -p portfolio down --remove-orphans
+              echo "✅ Контейнеры остановлены"
+            else
+              echo "ℹ️ Контейнеры не запущены"
+            fi
             
-            # Stop existing containers
-            echo "🛑 Stopping existing containers..."
-            docker-compose down || echo "⚠️ No containers to stop"
+            # Шаг 6: Обновляем код
+            echo "📋 Шаг 6: Обновляем код"
+            echo "🔄 Настраиваем remote на HTTPS..."
+            git remote set-url origin https://github.com/shiryaevam/portfolio.git
+            echo "📥 Получаем последние изменения..."
+            git fetch origin main
+            echo "🔄 Обновляем код..."
+            git pull origin main
+            echo "✅ Код обновлен"
             
-            # Pull latest code
-            echo "📥 Pulling latest code..."
-            git pull origin main || echo "⚠️ Git pull failed, continuing..."
+            # Шаг 7: Запускаем контейнеры
+            echo "📋 Шаг 7: Запускаем контейнеры"
+            echo "🔨 Собираем и запускаем контейнеры..."
+            docker compose -p portfolio up -d --build
+            echo "✅ Контейнеры запущены"
             
-            # Build and start containers
-            echo "🔨 Building and starting containers..."
-            docker-compose up -d --build
-            
-            # Wait and check
-            echo "⏳ Waiting for containers to start..."
-            sleep 30
-            
-            echo "🔍 Container status:"
-            docker-compose ps
-            
-            echo "✅ Deployment completed!"
+            # Шаг 8: Проверяем результат
+            echo "📋 Шаг 8: Проверяем результат"
+            echo "⏳ Ждем 15 секунд для запуска..."
+            sleep 15
+            echo "📊 Статус контейнеров:"
+            docker compose -p portfolio ps
+            echo "🎉 Деплой завершен!"
