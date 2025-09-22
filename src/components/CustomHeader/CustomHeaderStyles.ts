@@ -68,13 +68,6 @@ export const useCustomHeaderStyles = createStyles(
       border-top-right-radius: 16px;
     `,
 
-    // Logo
-    logo: css`
-      font-size: 18px;
-      color: ${token.colorText};
-      font-weight: 500;
-    `,
-
     // Mobile Drawer
     mobileDrawer: css`
       width: 280px;

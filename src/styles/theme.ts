@@ -153,6 +153,12 @@ export const colors = {
   }
 };
 
+export const colorsClasses = {
+  foreground: "foreground",
+  headingForeground: "headingForeground",
+  linkForeground: "linkForeground"
+};
+
 // Spacing scale from design system
 export const spacing = {
   1: "2px", // Step 1

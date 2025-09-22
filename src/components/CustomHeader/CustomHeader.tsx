@@ -1,3 +1,5 @@
+import { colorsClasses } from "../../styles/theme.ts";
+import { typographyClasses } from "@styles";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -12,7 +14,7 @@ export const CustomHeader = () => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { styles } = useCustomHeaderStyles();
+  const { cx, styles } = useCustomHeaderStyles();
 
   const menuItems: ItemType[] = [
     {
@@ -44,7 +46,14 @@ export const CustomHeader = () => {
       <div className={styles.headerNavigation}>
         <div className={styles.headerContainer}>
           {/* Logo */}
-          <div className={styles.logo}>aleksey-shiryaev</div>
+          <div
+            className={cx(
+              typographyClasses.bodyMedium,
+              colorsClasses.foreground
+            )}
+          >
+            aleksey-shiryaev
+          </div>
 
           {/* Desktop Navigation */}
           <div className={styles.desktopNav}>
