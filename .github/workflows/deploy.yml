@@ -170,6 +170,7 @@ jobs:
             echo "📥 Получаем последние изменения..."
             git fetch origin main
             echo "🔄 Обновляем код..."
+            git reset --hard origin/main
             git pull origin main
             echo "✅ Код обновлен"
             
