@@ -95,7 +95,7 @@ jobs:
             mkdir -p ~/portfolio/dist
 
       - name: Upload dist to server
-        uses: appleboy/scp-action@v0.1.8
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
