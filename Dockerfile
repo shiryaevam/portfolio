@@ -12,15 +12,12 @@ COPY . .
 RUN yarn build
 
 # Production stage
-FROM nginx:alpine
-
-# (конфиг Nginx монтируется через volume :ro из хоста)
+FROM caddy:2-alpine
 
 # Копируем собранное приложение
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/caddy
 
-EXPOSE 8080
+# Копируем конфигурацию Caddy в JSON
+COPY caddy.json /etc/caddy/caddy.json
 
-# Health check (корневой маршрут приложения)
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget -qO- http://localhost:8080/ > /dev/null 2>&1 || exit 1
+EXPOSE 80 443
