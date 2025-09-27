@@ -44,6 +44,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: test
+    if: github.ref == 'refs/heads/main'
     timeout-minutes: 15
     steps:
       - name: Checkout code
@@ -107,6 +108,19 @@ jobs:
           strip_components: 1
           overwrite: true
 
+      - name: Upload configs to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          source: |
+            caddy.json
+            docker-compose.yml
+          target: "~/portfolio"
+
       - name: Deploy to Production Server
         uses: appleboy/ssh-action@v0.1.10
         with:
@@ -117,103 +131,16 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             set -euo pipefail
-            echo "🚀 Начинаем деплой..."
-            echo "📅 Время: $(date)"
-            echo "👤 Пользователь: $(whoami)"
-            echo "📁 Домашняя папка: $(pwd)"
+            mkdir -p ~/portfolio
+            cd ~/portfolio
             
-            # Шаг 1: Проверяем текущее состояние
-            echo "📋 Шаг 1: Проверяем состояние сервера"
-            echo "💾 Свободное место:"
-            df -h ~
-            echo "📂 Содержимое домашней папки:"
-            ls -la ~
-            
-            # Шаг 2: Переходим в папку проекта
-            echo "📋 Шаг 2: Переходим в папку проекта"
-            if [ -d "$HOME/portfolio" ]; then
-              echo "✅ Папка ~/portfolio существует"
-              cd ~/portfolio
-              echo "📁 Текущая папка: $(pwd)"
-              echo "📂 Содержимое папки portfolio:"
-              ls -la
-              
-              # Если это не git репозиторий, но папка не пустая
-              if [ ! -d ".git" ] && [ "$(ls -A . 2>/dev/null)" ]; then
-                echo "🧹 Папка не пустая, но не является git репозиторием"
-                echo "📦 Сохраняем существующие файлы..."
-                mkdir -p ../portfolio-backup-$(date +%Y%m%d-%H%M%S)
-                mv * ../portfolio-backup-$(date +%Y%m%d-%H%M%S)/ 2>/dev/null || true
-                mv .* ../portfolio-backup-$(date +%Y%m%d-%H%M%S)/ 2>/dev/null || true
-                echo "📥 Клонируем репозиторий..."
-                git clone https://github.com/shiryaevam/portfolio.git .
-              fi
-            else
-              echo "❌ Папка ~/portfolio не найдена!"
-              echo "📦 Создаем папку и клонируем репозиторий..."
-              mkdir -p ~/portfolio
-              cd ~/portfolio
-              git clone https://github.com/shiryaevam/portfolio.git .
-              echo "✅ Репозиторий склонирован"
-            fi
-            
-            # Шаг 3: Проверяем Git репозиторий
-            echo "📋 Шаг 3: Проверяем Git репозиторий"
-            if [ -d ".git" ]; then
-              echo "✅ Git репозиторий найден"
-              echo "🔗 Текущий remote:"
-              git remote -v
-              echo "🌿 Текущая ветка:"
-              git branch
-              echo "📝 Последний коммит:"
-              git log -1 --oneline
-            else
-              echo "❌ Git репозиторий не найден!"
-              exit 1
-            fi
-            
-            # Шаг 4: Проверяем docker-compose.yml
-            echo "📋 Шаг 4: Проверяем docker-compose.yml"
-            if [ -f "docker-compose.yml" ]; then
-              echo "✅ docker-compose.yml найден"
-            else
-              echo "❌ docker-compose.yml не найден!"
-              echo "📂 Файлы в текущей папке:"
-              ls -la
-              exit 1
-            fi
-            
-            # Шаг 5: Останавливаем контейнеры
-            echo "📋 Шаг 5: Останавливаем контейнеры"
+            # Валидация конфига и быстрый реллоад, без простоя
+            docker compose -p portfolio run --rm -T portfolio caddy validate --config /etc/caddy/caddy.json
             if docker compose -p portfolio ps | grep -q "Up"; then
-              echo "🛑 Останавливаем запущенные контейнеры..."
-              docker compose -p portfolio down --remove-orphans
-              echo "✅ Контейнеры остановлены"
+              docker compose -p portfolio exec -T portfolio caddy reload --config /etc/caddy/caddy.json || docker compose -p portfolio up -d
             else
-              echo "ℹ️ Контейнеры не запущены"
+              docker compose -p portfolio up -d
             fi
             
-            # Шаг 6: Обновляем код
-            echo "📋 Шаг 6: Обновляем код"
-            echo "🔄 Настраиваем remote на HTTPS..."
-            git remote set-url origin https://github.com/shiryaevam/portfolio.git
-            echo "📥 Получаем последние изменения..."
-            git fetch origin main
-            echo "🔄 Обновляем код..."
-            git reset --hard origin/main
-            git pull origin main
-            echo "✅ Код обновлен"
-            
-            # Шаг 7: Запускаем контейнеры (без сборки)
-            echo "📋 Шаг 7: Запускаем контейнеры"
-            echo "▶️  Запускаем контейнеры без сборки..."
-            docker compose -p portfolio up -d
-            echo "✅ Контейнеры запущены"
-            
-            # Шаг 8: Проверяем результат
-            echo "📋 Шаг 8: Проверяем результат"
-            echo "⏳ Ждем 15 секунд для запуска..."
-            sleep 15
-            echo "📊 Статус контейнеров:"
             docker compose -p portfolio ps
             echo "🎉 Деплой завершен!"
