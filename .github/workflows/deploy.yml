@@ -83,16 +83,29 @@ jobs:
           name: build-output
           path: dist
 
-      - name: Upload dist to server
-        uses: appleboy/scp-action@v0.1.7
+      - name: Prepare remote directory
+        uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            mkdir -p ~/portfolio/dist
+
+      - name: Upload dist to server
+        uses: appleboy/scp-action@v0.1.8
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           source: "dist/**"
           target: "~/portfolio/dist"
           strip_components: 1
+          overwrite: true
 
       - name: Deploy to Production Server
         uses: appleboy/ssh-action@v0.1.10
