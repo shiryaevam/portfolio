@@ -137,9 +137,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          source: |
-            caddy.json
-            docker-compose.yml
+          source: "caddy.json,docker-compose.yml"
           target: "~/portfolio"
           overwrite: true
 
