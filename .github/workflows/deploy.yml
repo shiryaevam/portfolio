@@ -83,6 +83,18 @@ jobs:
         with:
           name: build-output
           path: dist
+          if-no-files-found: error
+
+      - name: Verify artifact content
+        run: |
+          echo "Listing dist contents"
+          ls -la dist || true
+          COUNT=$(find dist -type f | wc -l || echo 0)
+          echo "Files found in dist: $COUNT"
+          if [ "$COUNT" -eq 0 ]; then
+            echo "Artifact is empty (dist has 0 files). Check build job or artifact upload name." >&2
+            exit 1
+          fi
 
       - name: Prepare remote directory
         uses: appleboy/ssh-action@v0.1.10
