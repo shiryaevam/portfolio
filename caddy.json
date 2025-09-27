@@ -14,10 +14,12 @@
               "shiryaevam.site",
               "shiryaevam.online"
             ],
-            "issuer": {
-              "module": "acme",
-              "email": "shiryaev.am@mail.ru"
-            }
+            "issuers": [
+              {
+                "module": "acme",
+                "email": "shiryaev.am@mail.ru"
+              }
+            ]
           }
         ]
       }

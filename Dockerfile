@@ -3,7 +3,8 @@ WORKDIR /app
 
 # Копируем файлы зависимостей для кеширования
 COPY package*.json yarn.lock ./
-RUN yarn install --frozen-lockfile --production=false
+RUN yarn config set network-timeout 600000 -g \
+  && for i in 1 2 3; do yarn install --frozen-lockfile --production=false && break || (echo "yarn install failed, retry $i" && sleep 5); done
 
 # Копируем исходный код
 COPY . .
