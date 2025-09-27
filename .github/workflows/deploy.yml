@@ -109,9 +109,9 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             set -euo pipefail
-            mkdir -p ~/portfolio/dist
-            # Чистим старые файлы, чтобы не накапливался мусор
-            find ~/portfolio/dist -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+            mkdir -p ~/portfolio/dist_new
+            # Готовим временную директорию для атомарной замены
+            find ~/portfolio/dist_new -mindepth 1 -maxdepth 1 -exec rm -rf {} +
 
       - name: Upload dist to server
         uses: appleboy/scp-action@v1.0.0
@@ -122,7 +122,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           source: "dist/**"
-          target: "~/portfolio/dist"
+          target: "~/portfolio/dist_new"
           strip_components: 1
           overwrite: true
 
@@ -157,8 +157,26 @@ jobs:
             mkdir -p ~/portfolio
             cd ~/portfolio
             
-            # Валидация конфига и быстрый реллоад, без простоя
+            # Валидация конфига Caddy
             docker compose -p portfolio run --rm -T portfolio caddy validate --config /etc/caddy/caddy.json
+
+            # Атомарная замена каталога: dist_new -> dist (без окна простоя)
+            if [ -d dist_new ]; then
+              COUNT=$(find dist_new -type f | wc -l || echo 0)
+              if [ "$COUNT" -eq 0 ]; then
+                echo "dist_new is empty. Abort deploy." >&2
+                exit 1
+              fi
+              TS=$(date +%s)
+              if [ -d dist ]; then mv dist "dist_${TS}.bak"; fi
+              mv dist_new dist
+              rm -rf "dist_${TS}.bak" || true
+            else
+              echo "dist_new not found. Abort deploy." >&2
+              exit 1
+            fi
+
+            # Быстрый реллоад Caddy; при ошибке — пересоздание контейнера
             if docker compose -p portfolio ps | grep -q "Up"; then
               docker compose -p portfolio exec -T portfolio caddy reload --config /etc/caddy/caddy.json || docker compose -p portfolio up -d --remove-orphans
             else
