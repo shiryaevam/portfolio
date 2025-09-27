@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     if: github.ref == 'refs/heads/main'
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -63,13 +63,40 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - name: Upload build artifacts
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v4
+      - name: Docker meta (tags/labels)
+        id: meta
+        uses: docker/metadata-action@v5
         with:
-          name: build-output
-          path: dist/
-          retention-days: 2
+          images: |
+            ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,event=branch
+            type=sha
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          platforms: linux/amd64
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            ghcr.io/${{ github.repository }}:deploy-${{ github.sha }}
+          labels: ${{ steps.meta.outputs.labels }}
 
   deploy-production:
     runs-on: ubuntu-latest
@@ -81,50 +108,7 @@ jobs:
       - name: Checkout repo (for configs upload)
         uses: actions/checkout@v4
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-output
-          path: dist
-          if-no-files-found: error
-
-      - name: Verify artifact content
-        run: |
-          echo "Listing dist contents"
-          ls -la dist || true
-          COUNT=$(find dist -type f | wc -l || echo 0)
-          echo "Files found in dist: $COUNT"
-          if [ "$COUNT" -eq 0 ]; then
-            echo "Artifact is empty (dist has 0 files). Check build job or artifact upload name." >&2
-            exit 1
-          fi
-
-      - name: Prepare remote directory
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          script: |
-            set -euo pipefail
-            mkdir -p ~/portfolio/dist_new
-            # Готовим временную директорию для атомарной замены
-            find ~/portfolio/dist_new -mindepth 1 -maxdepth 1 -exec rm -rf {} +
-
-      - name: Upload dist to server
-        uses: appleboy/scp-action@v1.0.0
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          source: "dist/**"
-          target: "~/portfolio/dist_new"
-          strip_components: 1
-          overwrite: true
+      # dist больше не нужен: деплоим через готовый Docker-образ
 
       - name: Verify configs exist
         run: |
@@ -132,7 +116,7 @@ jobs:
           test -f caddy.json
           test -f docker-compose.yml
 
-      - name: Upload configs to server
+      - name: Upload docker-compose to server
         uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -140,7 +124,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          source: "caddy.json,docker-compose.yml"
+          source: "docker-compose.yml"
           target: "~/portfolio"
           overwrite: true
 
@@ -157,35 +141,21 @@ jobs:
             mkdir -p ~/portfolio
             cd ~/portfolio
             export PROJECT_DIR=~/portfolio
-            
-            # Валидация конфига Caddy
-            docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" run --rm -T portfolio caddy validate --config /etc/caddy/caddy.json
 
-            # Синхронизация содержимого без удаления mountpoint и без окна
-            if [ -d dist_new ]; then
-              COUNT=$(find dist_new -type f | wc -l || echo 0)
-              if [ "$COUNT" -eq 0 ]; then
-                echo "dist_new is empty. Abort deploy." >&2
-                exit 1
-              fi
-              mkdir -p dist
-              if command -v rsync >/dev/null 2>&1; then
-                # 1) заливаем все, кроме index.html, с удалением старых файлов
-                rsync -a --delete --exclude 'index.html' dist_new/ dist/
-                # 2) кладём index.html последним (чтобы он ссылался на уже существующие ассеты)
-                [ -f dist_new/index.html ] && rsync -a dist_new/index.html dist/ || true
-              else
-                # Fallback без удаления старых файлов (менее чисто, но безопасно)
-                cp -a dist_new/. dist/
-              fi
-              rm -rf dist_new || true
-            else
-              echo "dist_new not found. Abort deploy." >&2
-              exit 1
-            fi
+            # Docker login в GHCR
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-            # Всегда пересоздаём контейнер, чтобы обновился bind-монт
-            docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" up -d --remove-orphans --force-recreate
+            # Настраиваем переменные образа для compose
+            export IMAGE_REPO=ghcr.io/${{ github.repository }}
+            export IMAGE_TAG=deploy-${{ github.sha }}
+            set -a
+            echo IMAGE_REPO="$IMAGE_REPO" > .env
+            echo IMAGE_TAG="$IMAGE_TAG" >> .env
+            set +a
+
+            # Подтянуть и запустить новую версию
+            docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" pull
+            docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" up -d --remove-orphans
             
             docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" ps
             # Смоук-тест HTTP (ждём до 60с, пока контейнер готов)
