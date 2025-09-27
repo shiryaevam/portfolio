@@ -11,6 +11,7 @@ services:
       - caddy_data:/data
       - caddy_config:/config
       - ./caddy.json:/etc/caddy/caddy.json:ro
+    command: ["caddy", "run", "--config", "/etc/caddy/caddy.json"]
     networks:
       - portfolio-network
     # Ограничения ресурсов
