@@ -156,9 +156,10 @@ jobs:
             set -euo pipefail
             mkdir -p ~/portfolio
             cd ~/portfolio
+            export PROJECT_DIR=~/portfolio
             
             # Валидация конфига Caddy
-            docker compose -p portfolio run --rm -T portfolio caddy validate --config /etc/caddy/caddy.json
+            docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" run --rm -T portfolio caddy validate --config /etc/caddy/caddy.json
 
             # Синхронизация содержимого без удаления mountpoint и без окна
             if [ -d dist_new ]; then
@@ -184,13 +185,13 @@ jobs:
             fi
 
             # Быстрый реллоад Caddy; при ошибке — пересоздание контейнера
-            if docker compose -p portfolio ps | grep -q "Up"; then
-              docker compose -p portfolio exec -T portfolio caddy reload --config /etc/caddy/caddy.json || docker compose -p portfolio up -d --remove-orphans
+            if docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" ps | grep -q "Up"; then
+              docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" exec -T portfolio caddy reload --config /etc/caddy/caddy.json || docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" up -d --remove-orphans
             else
-              docker compose -p portfolio up -d --remove-orphans
+              docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" up -d --remove-orphans
             fi
             
-            docker compose -p portfolio ps
+            docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" ps
             # Смоук-тест HTTP (ждём до 60с, пока контейнер готов)
             for i in {1..12}; do
               if curl -fsS http://localhost/ >/dev/null; then

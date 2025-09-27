@@ -10,8 +10,8 @@ services:
     volumes:
       - caddy_data:/data
       - caddy_config:/config
-      - ./caddy.json:/etc/caddy/caddy.json:ro
-      - ./dist:/usr/share/caddy:ro
+      - ${PROJECT_DIR:-.}/caddy.json:/etc/caddy/caddy.json:ro
+      - ${PROJECT_DIR:-.}/dist:/usr/share/caddy:ro
     command: ["caddy", "run", "--config", "/etc/caddy/caddy.json"]
     networks:
       - portfolio-network
