@@ -123,6 +123,12 @@ jobs:
           strip_components: 1
           overwrite: true
 
+      - name: Verify configs exist
+        run: |
+          ls -la caddy.json docker-compose.yml
+          test -f caddy.json
+          test -f docker-compose.yml
+
       - name: Upload configs to server
         uses: appleboy/scp-action@v0.1.7
         with:
