@@ -47,24 +47,6 @@
                   "handler": "subroute",
                   "routes": [
                     {
-                      "match": [
-                        { "path": [
-                          "*.js", "*.css", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.ico", "*.svg",
-                          "*.woff", "*.woff2", "*.ttf", "*.eot", "*.webp", "*.avif"
-                        ] }
-                      ],
-                      "handle": [
-                        {
-                          "handler": "headers",
-                          "response": {
-                            "set": {
-                              "Cache-Control": ["public, max-age=31536000, immutable"]
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    {
                       "handle": [
                         {
                           "handler": "headers",
@@ -86,18 +68,37 @@
                     },
                     {
                       "match": [
-                        {
-                          "not": [ { "file": { "try_files": ["{http.request.uri.path}"] } } ]
-                        }
+                        { "path_regexp": { "name": "static", "pattern": 
+                          ".*\\.(?:js|css|png|jpg|jpeg|gif|ico|svg|woff2?|ttf|eot|webp|avif)$" } }
                       ],
-                      "handle": [ { "handler": "rewrite", "uri": "/index.html" } ]
+                      "handle": [
+                        {
+                          "handler": "headers",
+                          "response": {
+                            "set": {
+                              "Cache-Control": ["public, max-age=31536000, immutable"]
+                            }
+                          }
+                        },
+                        {
+                          "handler": "file_server",
+                          "root": "/usr/share/caddy"
+                        }
+                      ]
                     },
                     {
+                      "match": [ { "file": { "try_files": ["{http.request.uri.path}"] } } ],
                       "handle": [
                         {
                           "handler": "file_server",
                           "root": "/usr/share/caddy"
                         }
+                      ]
+                    },
+                    {
+                      "handle": [
+                        { "handler": "rewrite", "uri": "/index.html" },
+                        { "handler": "file_server", "root": "/usr/share/caddy" }
                       ]
                     }
                   ]
