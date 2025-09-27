@@ -11,6 +11,7 @@ export const useMainLayoutStyles = createStyles(({ css, token }) => ({
   // Main Content
   mainContent: css`
     overflow-y: scroll;
+    overflow-x: hidden;
     margin: 0;
     background: transparent;
     border-left: solid 1px ${token.colorBorder};

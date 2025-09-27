@@ -40,6 +40,7 @@ export const useHomePageStyles = createStyles(({ css }) => ({
   wrapper: css`
     position: relative;
     height: 100%;
+    overflow: hidden;
     svg {
       position: absolute;
       top: 0;
