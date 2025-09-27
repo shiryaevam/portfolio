@@ -100,7 +100,7 @@ jobs:
           fi
 
       - name: Prepare remote directory
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
@@ -108,10 +108,13 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
+            set -euo pipefail
             mkdir -p ~/portfolio/dist
+            # Чистим старые файлы, чтобы не накапливался мусор
+            find ~/portfolio/dist -mindepth 1 -maxdepth 1 -exec rm -rf {} +
 
       - name: Upload dist to server
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
@@ -130,7 +133,7 @@ jobs:
           test -f docker-compose.yml
 
       - name: Upload configs to server
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
@@ -142,7 +145,7 @@ jobs:
           overwrite: true
 
       - name: Deploy to Production Server
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
@@ -157,10 +160,15 @@ jobs:
             # Валидация конфига и быстрый реллоад, без простоя
             docker compose -p portfolio run --rm -T portfolio caddy validate --config /etc/caddy/caddy.json
             if docker compose -p portfolio ps | grep -q "Up"; then
-              docker compose -p portfolio exec -T portfolio caddy reload --config /etc/caddy/caddy.json || docker compose -p portfolio up -d
+              docker compose -p portfolio exec -T portfolio caddy reload --config /etc/caddy/caddy.json || docker compose -p portfolio up -d --remove-orphans
             else
-              docker compose -p portfolio up -d
+              docker compose -p portfolio up -d --remove-orphans
             fi
             
             docker compose -p portfolio ps
+            # Смоук-тест HTTP (ждём до 60с, пока контейнер готов)
+            for i in {1..12}; do
+              if curl -fsS http://localhost/ >/dev/null; then
+                echo "Smoke OK"; break; fi; echo "waiting..."; sleep 5; done
+            curl -fI http://localhost/ || (echo "Smoke test failed" && exit 1)
             echo "🎉 Деплой завершен!"
