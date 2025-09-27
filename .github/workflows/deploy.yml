@@ -184,12 +184,8 @@ jobs:
               exit 1
             fi
 
-            # Быстрый реллоад Caddy; при ошибке — пересоздание контейнера
-            if docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" ps | grep -q "Up"; then
-              docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" exec -T portfolio caddy reload --config /etc/caddy/caddy.json || docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" up -d --remove-orphans
-            else
-              docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" up -d --remove-orphans
-            fi
+            # Всегда пересоздаём контейнер, чтобы обновился bind-монт
+            docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" up -d --remove-orphans --force-recreate
             
             docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" ps
             # Смоук-тест HTTP (ждём до 60с, пока контейнер готов)
