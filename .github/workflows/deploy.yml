@@ -77,6 +77,23 @@ jobs:
     environment: production
     timeout-minutes: 20
     steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: dist
+
+      - name: Upload dist to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/**"
+          target: "~/portfolio/dist"
+          strip_components: 1
+
       - name: Deploy to Production Server
         uses: appleboy/ssh-action@v0.1.10
         with:
@@ -174,10 +191,10 @@ jobs:
             git pull origin main
             echo "✅ Код обновлен"
             
-            # Шаг 7: Запускаем контейнеры
+            # Шаг 7: Запускаем контейнеры (без сборки)
             echo "📋 Шаг 7: Запускаем контейнеры"
-            echo "🔨 Собираем и запускаем контейнеры..."
-            docker compose -p portfolio up -d --build
+            echo "▶️  Запускаем контейнеры без сборки..."
+            docker compose -p portfolio up -d
             echo "✅ Контейнеры запущены"
             
             # Шаг 8: Проверяем результат

@@ -2,7 +2,7 @@
 name: portfolio
 services:
   portfolio:
-    build: .
+    image: caddy:2-alpine
     restart: unless-stopped
     ports:
       - "80:80"
@@ -11,6 +11,7 @@ services:
       - caddy_data:/data
       - caddy_config:/config
       - ./caddy.json:/etc/caddy/caddy.json:ro
+      - ./dist:/usr/share/caddy:ro
     command: ["caddy", "run", "--config", "/etc/caddy/caddy.json"]
     networks:
       - portfolio-network
