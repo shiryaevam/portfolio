@@ -160,17 +160,24 @@ jobs:
             # Валидация конфига Caddy
             docker compose -p portfolio run --rm -T portfolio caddy validate --config /etc/caddy/caddy.json
 
-            # Атомарная замена каталога: dist_new -> dist (без окна простоя)
+            # Синхронизация содержимого без удаления mountpoint и без окна
             if [ -d dist_new ]; then
               COUNT=$(find dist_new -type f | wc -l || echo 0)
               if [ "$COUNT" -eq 0 ]; then
                 echo "dist_new is empty. Abort deploy." >&2
                 exit 1
               fi
-              TS=$(date +%s)
-              if [ -d dist ]; then mv dist "dist_${TS}.bak"; fi
-              mv dist_new dist
-              rm -rf "dist_${TS}.bak" || true
+              mkdir -p dist
+              if command -v rsync >/dev/null 2>&1; then
+                # 1) заливаем все, кроме index.html, с удалением старых файлов
+                rsync -a --delete --exclude 'index.html' dist_new/ dist/
+                # 2) кладём index.html последним (чтобы он ссылался на уже существующие ассеты)
+                [ -f dist_new/index.html ] && rsync -a dist_new/index.html dist/ || true
+              else
+                # Fallback без удаления старых файлов (менее чисто, но безопасно)
+                cp -a dist_new/. dist/
+              fi
+              rm -rf dist_new || true
             else
               echo "dist_new not found. Abort deploy." >&2
               exit 1
