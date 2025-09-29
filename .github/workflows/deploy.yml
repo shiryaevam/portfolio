@@ -163,7 +163,7 @@ jobs:
             docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" ps
             # Смоук-тест HTTP (ждём до 60с, пока контейнер готов)
             for i in {1..12}; do
-              if curl -fsS http://localhost/ >/dev/null; then
+              if curl -fsS http://localhost/ -H "Host: shiryaev.am" >/dev/null; then
                 echo "Smoke OK"; break; fi; echo "waiting..."; sleep 5; done
-            curl -fI http://localhost/ || (echo "Smoke test failed" && exit 1)
+            curl -fI http://localhost/ -H "Host: shiryaev.am" || (echo "Smoke test failed" && docker logs --tail 200 portfolio-portfolio-1 && exit 1)
             echo "🎉 Деплой завершен!"
