@@ -44,12 +44,6 @@ export const useCustomHeaderStyles = createStyles(
       }
     `,
 
-    drawerTitle: css`
-      font-size: 18px;
-      color: ${token.colorText};
-      font-weight: 500;
-    `,
-
     headerContainer: css`
       display: flex;
       justify-content: space-between;
@@ -70,7 +64,9 @@ export const useCustomHeaderStyles = createStyles(
 
     // Mobile Drawer
     mobileDrawer: css`
-      width: 280px;
+      width: 100%;
+      overflow: hidden;
+      position: absolute;
     `,
 
     // Mobile Menu

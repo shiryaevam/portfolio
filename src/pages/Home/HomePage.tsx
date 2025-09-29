@@ -1,7 +1,10 @@
 import { colorsClasses } from "../../styles/theme.ts";
 import { typographyClasses } from "@styles";
+import { useOutletContext } from "react-router-dom";
 
 import { Flex } from "antd";
+
+import type { LayoutContext } from "../../shared/types/OutletContextType.ts";
 
 import { useHomePageStyles } from "./HomePageStyles";
 
@@ -9,12 +12,14 @@ import BackgroundBlurs from "./BackgroundBlurs.svg";
 
 export const HomePage = () => {
   const { cx, styles } = useHomePageStyles();
+  const { referenceContainer } = useOutletContext<LayoutContext>();
 
   return (
     <Flex
       align={"center"}
       className={styles.wrapper}
       justify={"center"}
+      ref={referenceContainer}
       vertical
     >
       <div className={styles.container}>
@@ -70,7 +75,7 @@ export const HomePage = () => {
           </div>
         </Flex>
       </div>
-      <BackgroundBlurs />
+      <BackgroundBlurs className={styles.backgroundSvg} />
     </Flex>
   );
 };

@@ -2,6 +2,14 @@ import { colors } from "@styles";
 import { createStyles } from "antd-style";
 
 export const useHomePageStyles = createStyles(({ css }) => ({
+  backgroundSvg: css`
+    position: absolute;
+    top: -14dvh;
+    left: 0;
+    width: 120dvw;
+    height: 110dvh;
+    z-index: 1;
+  `,
   container: css`
     position: relative;
     width: 100%;
@@ -41,13 +49,5 @@ export const useHomePageStyles = createStyles(({ css }) => ({
     position: relative;
     height: 100%;
     overflow: hidden;
-    svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 120dvw;
-      height: 110dvh;
-      z-index: 1;
-    }
   `
 }));
