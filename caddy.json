@@ -39,35 +39,67 @@
           "routes": [
             {
               "match": [{ "host": ["www.shiryaev.am"] }],
-              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaev.am{uri}" }]
+              "handle": [{
+                "handler": "static_response",
+                "status_code": 308,
+                "headers": { "Location": ["https://shiryaev.am{uri}"] }
+              }]
             },
             {
               "match": [{ "host": ["www.shiryaevam.pro"] }],
-              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.pro{uri}" }]
+              "handle": [{
+                "handler": "static_response",
+                "status_code": 308,
+                "headers": { "Location": ["https://shiryaevam.pro{uri}"] }
+              }]
             },
             {
               "match": [{ "host": ["www.shiryaevam.tech"] }],
-              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.tech{uri}" }]
+              "handle": [{
+                "handler": "static_response",
+                "status_code": 308,
+                "headers": { "Location": ["https://shiryaevam.tech{uri}"] }
+              }]
             },
             {
               "match": [{ "host": ["www.shiryaevam.com"] }],
-              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.com{uri}" }]
+              "handle": [{
+                "handler": "static_response",
+                "status_code": 308,
+                "headers": { "Location": ["https://shiryaevam.com{uri}"] }
+              }]
             },
             {
               "match": [{ "host": ["www.shiryaevam.ru"] }],
-              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.ru{uri}" }]
+              "handle": [{
+                "handler": "static_response",
+                "status_code": 308,
+                "headers": { "Location": ["https://shiryaevam.ru{uri}"] }
+              }]
             },
             {
               "match": [{ "host": ["www.shiryaevam.store"] }],
-              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.store{uri}" }]
+              "handle": [{
+                "handler": "static_response",
+                "status_code": 308,
+                "headers": { "Location": ["https://shiryaevam.store{uri}"] }
+              }]
             },
             {
               "match": [{ "host": ["www.shiryaevam.site"] }],
-              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.site{uri}" }]
+              "handle": [{
+                "handler": "static_response",
+                "status_code": 308,
+                "headers": { "Location": ["https://shiryaevam.site{uri}"] }
+              }]
             },
             {
               "match": [{ "host": ["www.shiryaevam.online"] }],
-              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.online{uri}" }]
+              "handle": [{
+                "handler": "static_response",
+                "status_code": 308,
+                "headers": { "Location": ["https://shiryaevam.online{uri}"] }
+              }]
             },
             {
               "match": [
