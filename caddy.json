@@ -12,7 +12,15 @@
               "shiryaevam.ru",
               "shiryaevam.store",
               "shiryaevam.site",
-              "shiryaevam.online"
+              "shiryaevam.online",
+              "www.shiryaev.am",
+              "www.shiryaevam.pro",
+              "www.shiryaevam.tech",
+              "www.shiryaevam.com",
+              "www.shiryaevam.ru",
+              "www.shiryaevam.store",
+              "www.shiryaevam.site",
+              "www.shiryaevam.online"
             ],
             "issuers": [
               {
@@ -29,6 +37,38 @@
         "srv0": {
           "listen": [":80", ":443"],
           "routes": [
+            {
+              "match": [{ "host": ["www.shiryaev.am"] }],
+              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaev.am{uri}" }]
+            },
+            {
+              "match": [{ "host": ["www.shiryaevam.pro"] }],
+              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.pro{uri}" }]
+            },
+            {
+              "match": [{ "host": ["www.shiryaevam.tech"] }],
+              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.tech{uri}" }]
+            },
+            {
+              "match": [{ "host": ["www.shiryaevam.com"] }],
+              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.com{uri}" }]
+            },
+            {
+              "match": [{ "host": ["www.shiryaevam.ru"] }],
+              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.ru{uri}" }]
+            },
+            {
+              "match": [{ "host": ["www.shiryaevam.store"] }],
+              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.store{uri}" }]
+            },
+            {
+              "match": [{ "host": ["www.shiryaevam.site"] }],
+              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.site{uri}" }]
+            },
+            {
+              "match": [{ "host": ["www.shiryaevam.online"] }],
+              "handle": [{ "handler": "redirect", "status_code": 308, "uri": "https://shiryaevam.online{uri}" }]
+            },
             {
               "match": [
                 { "host": [

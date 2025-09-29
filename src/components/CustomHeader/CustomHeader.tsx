@@ -1,7 +1,7 @@
 import { colorsClasses } from "../../styles/theme.ts";
 import { typographyClasses } from "@styles";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
 import { Button, Drawer, Menu } from "antd";
@@ -17,30 +17,28 @@ export const CustomHeader = ({
 }) => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
   const { cx, styles } = useCustomHeaderStyles();
 
   const menuItems: ItemType[] = [
     {
-      label: "_hello",
+      label: <Link to={"/"}>_hello</Link>,
       key: "/"
     },
     {
-      label: "_about-me",
+      label: <Link to={"/about"}>_about-me</Link>,
       key: "/about"
     },
     {
-      label: "_projects",
+      label: <Link to={"/projects"}>_projects</Link>,
       key: "/projects"
     },
     {
-      label: "_contact-me",
+      label: <Link to={"/contact"}>_contact-me</Link>,
       key: "/contact"
     }
   ];
 
-  const handleMenuClick = (key: string) => {
-    navigate(key);
+  const handleMenuClick = () => {
     setMobileMenuVisible(false);
   };
 
@@ -65,7 +63,7 @@ export const CustomHeader = ({
               className={styles.desktopMenu}
               items={menuItems}
               mode="horizontal"
-              onClick={({ key }) => handleMenuClick(key)}
+              onClick={handleMenuClick}
               selectedKeys={[location.pathname]}
             />
           </div>
@@ -101,7 +99,7 @@ export const CustomHeader = ({
             className={styles.mobileMenu}
             items={menuItems}
             mode="vertical"
-            onClick={({ key }) => handleMenuClick(key)}
+            onClick={handleMenuClick}
             selectedKeys={[location.pathname]}
           />
         </Drawer>
