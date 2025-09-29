@@ -145,6 +145,27 @@ jobs:
             cd ~/portfolio
             export PROJECT_DIR=~/portfolio
 
+            rollback_and_exit() {
+              echo "Attempting rollback..."
+              if [ -f .last_successful ]; then
+                export PREV_IMAGE_TAG="$(cat .last_successful)"
+                if [ -z "${PREV_IMAGE_TAG:-}" ]; then
+                  echo "No previous tag recorded in .last_successful"; exit 1; fi
+                echo "Rolling back to $PREV_IMAGE_TAG"
+                set -a
+                echo IMAGE_REPO="$IMAGE_REPO" > .env
+                echo IMAGE_TAG="$PREV_IMAGE_TAG" >> .env
+                set +a
+                docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" pull || true
+                docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" up -d --remove-orphans || true
+                docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" ps || true
+                echo "Rollback complete"
+              else
+                echo ".last_successful not found; cannot rollback"
+              fi
+              exit 1
+            }
+
             # Docker login в GHCR
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
@@ -165,5 +186,48 @@ jobs:
             for i in {1..12}; do
               if curl -fsS http://localhost/ -H "Host: shiryaev.am" >/dev/null; then
                 echo "Smoke OK"; break; fi; echo "waiting..."; sleep 5; done
-            curl -fI http://localhost/ -H "Host: shiryaev.am" || (echo "Smoke test failed" && docker logs --tail 200 portfolio-portfolio-1 && exit 1)
+            curl -fI http://localhost/ -H "Host: shiryaev.am" || (echo "Smoke test failed" && docker logs --tail 200 portfolio-portfolio-1 && rollback_and_exit)
+
+            # Проверка HTTPS для всех доменов
+            DOMAINS=(
+              shiryaev.am
+              shiryaevam.pro
+              shiryaevam.tech
+              shiryaevam.com
+              shiryaevam.ru
+              shiryaevam.store
+              shiryaevam.site
+              shiryaevam.online
+            )
+
+            echo "Checking HTTPS (200) on apex domains..."
+            for d in "${DOMAINS[@]}"; do
+              echo " - https://$d"
+              ok=false
+              for i in {1..12}; do
+                code=$(curl -sS -o /dev/null -w '%{http_code}' --resolve "$d:443:127.0.0.1" "https://$d/") || code=000
+                if [ "$code" = "200" ]; then ok=true; echo "   OK (200)"; break; fi
+                echo "   waiting ($code)..."; sleep 5
+              done
+              if [ "$ok" != true ]; then
+                echo "HTTPS check failed for $d (code $code)" && docker logs --tail 200 portfolio-portfolio-1 && rollback_and_exit
+              fi
+            done
+
+            echo "Checking HTTPS redirects (308) on www subdomains..."
+            for d in "${DOMAINS[@]}"; do
+              www="www.$d"
+              status=$(curl -sS -o /dev/null -w '%{http_code}' -I --resolve "$www:443:127.0.0.1" "https://$www/") || status=000
+              if [ "$status" != "308" ]; then
+                echo "Expected 308 for $www, got $status" && docker logs --tail 200 portfolio-portfolio-1 && rollback_and_exit
+              fi
+              loc=$(curl -sS -I --resolve "$www:443:127.0.0.1" "https://$www/" | awk -F': ' 'tolower($1) == "location" {print $2}' | tr -d '\r')
+              case "$loc" in
+                https://$d*) echo "   $www -> $loc" ;;
+                *) echo "Bad Location for $www: $loc" && docker logs --tail 200 portfolio-portfolio-1 && rollback_and_exit ;;
+              esac
+            done
+
+            # Зафиксировать успешный релиз для потенциального отката в будущем
+            echo "$IMAGE_TAG" > .last_successful
             echo "🎉 Деплой завершен!"
