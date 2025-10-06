@@ -1,7 +1,7 @@
 // Экспорт всех стилей
 export { useNeonStyles } from "./neonStyles";
 
-export { colors, theme } from "./theme.ts";
+export { colors, colorsClasses, theme } from "./theme.ts";
 
 // Typography exports
 export {

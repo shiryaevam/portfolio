@@ -65,6 +65,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@components": fileURLToPath(new URL("src/components", import.meta.url)),
+      "@icons": fileURLToPath(new URL("src/assets/icons", import.meta.url)),
       "@public": fileURLToPath(new URL("public", import.meta.url)),
       "@styles": fileURLToPath(new URL("src/styles", import.meta.url))
     }

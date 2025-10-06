@@ -1,5 +1,4 @@
-import { colorsClasses } from "../../styles/theme.ts";
-import { typographyClasses } from "@styles";
+import { colorsClasses, typographyClasses } from "@styles";
 import { useOutletContext } from "react-router-dom";
 
 import { Flex } from "antd";
@@ -39,7 +38,9 @@ export const HomePage = () => {
               Hi all. I am
             </span>
 
-            <h2>Shiryaev Aleksey</h2>
+            <h2 className={colorsClasses.headingForeground}>
+              Shiryaev Aleksey
+            </h2>
             <h6 className={styles.jobTitle}>{">"} Front-end developer</h6>
           </div>
           <div>

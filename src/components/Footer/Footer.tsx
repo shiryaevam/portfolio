@@ -1,45 +1,51 @@
-import {
-  GithubOutlined,
-  LinkedinOutlined,
-  TwitterOutlined
-} from "@ant-design/icons";
+import { colorsClasses, typographyClasses } from "@styles";
+
+import { GitIcon, LinkedinIcon } from "@icons";
+import { Flex } from "antd";
 
 import { useFooterStyles } from "./FooterStyles";
 
 export const Footer = () => {
-  const { styles } = useFooterStyles();
+  const { cx, styles } = useFooterStyles();
 
   return (
-    <div className={styles.footer}>
-      <div className={styles.footerContainer}>
-        <div className={styles.footerText}>find me in:</div>
-        <div className={styles.socialLinks}>
-          <a
-            className={`${styles.codeLink} ${styles.socialLink}`}
-            href="https://twitter.com"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <TwitterOutlined />
-          </a>
-          <a
-            className={`${styles.codeLink} ${styles.socialLink}`}
-            href="https://linkedin.com"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <LinkedinOutlined />
-          </a>
-          <a
-            className={`${styles.codeLink} ${styles.socialLink}`}
-            href="https://github.com"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <GithubOutlined />
-          </a>
-        </div>
+    <Flex align={"center"} className={styles.footer} gap={47}>
+      <div
+        className={cx(
+          styles.footerText,
+          typographyClasses.bodyMedium,
+          colorsClasses.foreground
+        )}
+      >
+        find me in:
       </div>
-    </div>
+      <Flex
+        align={"center"}
+        className={styles.socialLinks}
+        gap={20}
+        justify={"center"}
+      >
+        <a
+          aria-label="GitHub"
+          title="GitHub"
+          className={styles.socialLink}
+          href="https://github.com/shiryaevam"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <GitIcon />
+        </a>
+        <a
+          aria-label="LinkedIn"
+          title="LinkedIn"
+          className={styles.socialLink}
+          href="https://linkedin.com/in/shiryaevam"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <LinkedinIcon />
+        </a>
+      </Flex>
+    </Flex>
   );
 };
