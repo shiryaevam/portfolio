@@ -9,7 +9,7 @@ export const Footer = () => {
   const { cx, styles } = useFooterStyles();
 
   return (
-    <Flex align={"center"} className={styles.footer} gap={47}>
+    <Flex align={"center"} className={styles.footer}>
       <div
         className={cx(
           styles.footerText,
@@ -19,22 +19,7 @@ export const Footer = () => {
       >
         find me in:
       </div>
-      <Flex
-        align={"center"}
-        className={styles.socialLinks}
-        gap={20}
-        justify={"center"}
-      >
-        <a
-          aria-label="GitHub"
-          title="GitHub"
-          className={styles.socialLink}
-          href="https://github.com/shiryaevam"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <GitIcon />
-        </a>
+      <Flex align={"center"} className={styles.socialLinks}>
         <a
           aria-label="LinkedIn"
           title="LinkedIn"
@@ -44,6 +29,16 @@ export const Footer = () => {
           target="_blank"
         >
           <LinkedinIcon />
+        </a>
+        <a
+          aria-label="GitHub"
+          title="GitHub"
+          className={styles.socialLink}
+          href="https://github.com/shiryaevam"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <GitIcon />
         </a>
       </Flex>
     </Flex>

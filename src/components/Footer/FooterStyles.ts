@@ -14,31 +14,38 @@ export const useFooterStyles = createStyles(({ css }) => ({
 
   footerText: css`
     height: 100%;
+    display: flex;
     align-items: center;
-    padding: 16px 0 16px 24px;
+    padding: 16px 24px;
+    border-right: 1px solid ${colors.slate[700]};
   `,
 
   socialLink: css`
-    font-size: 18px;
     display: flex;
-    width: 32px;
     align-items: center;
+    justify-content: center;
+    width: 56px;
     height: 100%;
-    transition: all 0.3s ease;
-    border-left: solid 1px ${colors.slate[700]};
+    transition:
+      color 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+    border-left: 1px solid ${colors.slate[700]};
 
     &:hover {
       border-color: ${colors.teal[400]};
-      box-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
+      box-shadow: 0 0 10px rgba(45, 212, 191, 0.2);
     }
+
     svg {
-      align-items: center;
-      transform: translateX(60%);
+      width: 28px;
+      height: 28px;
     }
   `,
 
   socialLinks: css`
-    flex-grow: 2;
+    flex: 1 1 auto;
     height: 100%;
+    justify-content: flex-end;
   `
 }));
