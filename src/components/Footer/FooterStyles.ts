@@ -33,7 +33,7 @@ export const useFooterStyles = createStyles(({ css }) => ({
     }
     svg {
       align-items: center;
-      translate: 60%;
+      transform: translateX(60%);
     }
   `,
 

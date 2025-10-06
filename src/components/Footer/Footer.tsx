@@ -26,6 +26,8 @@ export const Footer = () => {
         justify={"center"}
       >
         <a
+          aria-label="GitHub"
+          title="GitHub"
           className={styles.socialLink}
           href="https://github.com/shiryaevam"
           rel="noopener noreferrer"
@@ -34,6 +36,8 @@ export const Footer = () => {
           <GitIcon />
         </a>
         <a
+          aria-label="LinkedIn"
+          title="LinkedIn"
           className={styles.socialLink}
           href="https://linkedin.com/in/shiryaevam"
           rel="noopener noreferrer"
