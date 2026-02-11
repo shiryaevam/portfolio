@@ -113,10 +113,9 @@ jobs:
 
       # dist больше не нужен: деплоим через готовый Docker-образ
 
-      - name: Verify configs exist
+      - name: Verify compose exists
         run: |
-          ls -la caddy.json docker-compose.yml
-          test -f caddy.json
+          ls -la docker-compose.yml
           test -f docker-compose.yml
 
       - name: Upload docker-compose to server
@@ -144,6 +143,7 @@ jobs:
             mkdir -p ~/portfolio
             cd ~/portfolio
             export PROJECT_DIR=~/portfolio
+            export BACKEND_PORT=8082
 
             rollback_and_exit() {
               echo "Attempting rollback..."
@@ -182,13 +182,20 @@ jobs:
             docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" up -d --remove-orphans
             
             docker compose -p portfolio -f docker-compose.yml --project-directory "$PROJECT_DIR" ps
-            # Смоук-тест HTTP (ждём до 60с, пока контейнер готов)
+            # Smoke-тест backend (контейнер слушает только локально на 127.0.0.1:$BACKEND_PORT)
+            echo "Checking backend on 127.0.0.1:${BACKEND_PORT} ..."
+            ok=false
             for i in {1..12}; do
-              if curl -fsS http://localhost/ -H "Host: shiryaev.am" >/dev/null; then
-                echo "Smoke OK"; break; fi; echo "waiting..."; sleep 5; done
-            curl -fI http://localhost/ -H "Host: shiryaev.am" || (echo "Smoke test failed" && docker logs --tail 200 portfolio-portfolio-1 && rollback_and_exit)
+              if curl -fsS "http://127.0.0.1:${BACKEND_PORT}/" >/dev/null; then ok=true; echo "Backend smoke OK"; break; fi
+              echo "waiting backend..."; sleep 5
+            done
+            if [ "$ok" != true ]; then
+              echo "Backend smoke failed"
+              docker logs --tail 200 portfolio-portfolio-1 || true
+              rollback_and_exit
+            fi
 
-            # Проверка HTTPS для всех доменов
+            # (Не блокирующая) проверка HTTPS для доменов через edge Caddy
             DOMAINS=(
               shiryaev.am
               shiryaevam.pro
@@ -200,7 +207,7 @@ jobs:
               shiryaevam.online
             )
 
-            echo "Checking HTTPS (200) on apex domains..."
+            echo "Soft-check HTTPS (200) on apex domains..."
             for d in "${DOMAINS[@]}"; do
               echo " - https://$d"
               ok=false
@@ -209,22 +216,18 @@ jobs:
                 if [ "$code" = "200" ]; then ok=true; echo "   OK (200)"; break; fi
                 echo "   waiting ($code)..."; sleep 5
               done
-              if [ "$ok" != true ]; then
-                echo "HTTPS check failed for $d (code $code)" && docker logs --tail 200 portfolio-portfolio-1 && rollback_and_exit
-              fi
+              if [ "$ok" != true ]; then echo "WARN: HTTPS check failed for $d (code $code) — deployment not blocked"; fi
             done
 
-            echo "Checking HTTPS redirects (308) on www subdomains..."
+            echo "Soft-check HTTPS redirects (308) on www subdomains..."
             for d in "${DOMAINS[@]}"; do
               www="www.$d"
               status=$(curl -sS -o /dev/null -w '%{http_code}' -I --resolve "$www:443:127.0.0.1" "https://$www/") || status=000
-              if [ "$status" != "308" ]; then
-                echo "Expected 308 for $www, got $status" && docker logs --tail 200 portfolio-portfolio-1 && rollback_and_exit
-              fi
+              if [ "$status" != "308" ]; then echo "WARN: Expected 308 for $www, got $status — deployment not blocked"; fi
               loc=$(curl -sS -I --resolve "$www:443:127.0.0.1" "https://$www/" | awk -F': ' 'tolower($1) == "location" {print $2}' | tr -d '\r')
               case "$loc" in
                 https://$d*) echo "   $www -> $loc" ;;
-                *) echo "Bad Location for $www: $loc" && docker logs --tail 200 portfolio-portfolio-1 && rollback_and_exit ;;
+                *) echo "WARN: Bad Location for $www: $loc — deployment not blocked" ;;
               esac
             done
 
