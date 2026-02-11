@@ -199,12 +199,8 @@ jobs:
             DOMAINS=(
               shiryaev.am
               shiryaevam.pro
-              shiryaevam.tech
               shiryaevam.com
               shiryaevam.ru
-              shiryaevam.store
-              shiryaevam.site
-              shiryaevam.online
             )
 
             echo "Soft-check HTTPS (200) on apex domains..."
