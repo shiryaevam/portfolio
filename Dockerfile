@@ -18,7 +18,5 @@ FROM caddy:2-alpine
 # Копируем собранное приложение
 COPY --from=builder /app/dist /usr/share/caddy
 
-# Копируем конфигурацию Caddy
-COPY caddy.json /etc/caddy/caddy.json
 
 EXPOSE 80 443
