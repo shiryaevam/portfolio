@@ -1,5 +1,4 @@
-import { colorsClasses } from "../../styles/theme.ts";
-import { typographyClasses } from "@styles";
+import { colorsClasses, typographyClasses } from "@styles";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -20,6 +19,11 @@ export const CustomHeader = ({
   const { cx, styles } = useCustomHeaderStyles();
 
   const menuItems: ItemType[] = [
+    {
+      label: "# navigate:",
+      key: "navigate",
+      onClick: () => {}
+    },
     {
       label: <Link to={"/"}>_hello</Link>,
       key: "/"
@@ -87,13 +91,17 @@ export const CustomHeader = ({
             },
             header: {
               display: "none"
+            },
+            wrapper: {
+              width: "100%"
             }
           }}
+          classNames={{ body: styles.mobileDrawerBody }}
           getContainer={container}
           onClose={() => setMobileMenuVisible(false)}
           open={mobileMenuVisible}
           placement="right"
-          rootClassName={styles.mobileDrawer}
+          rootClassName={styles.mobileDrawerRoot}
         >
           <Menu
             className={styles.mobileMenu}

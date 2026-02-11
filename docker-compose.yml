@@ -5,14 +5,13 @@ services:
     image: ${IMAGE_REPO}:${IMAGE_TAG}
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - "127.0.0.1:8081:80"
     cap_add:
       - NET_BIND_SERVICE
     volumes:
       - caddy_data:/data
       - caddy_config:/config
-    command: ["caddy", "run", "--config", "/etc/caddy/caddy.json"]
+    command: ["caddy", "file-server", "--root", "/usr/share/caddy", "--listen", ":80"]
     networks:
       - portfolio-network
     # Ограничения ресурсов

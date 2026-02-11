@@ -62,8 +62,13 @@ export const useCustomHeaderStyles = createStyles(
       border-top-right-radius: 16px;
     `,
 
+    mobileDrawerBody: css`
+      &.${prefixCls}-drawer-body {
+        padding: 0;
+      }
+    `,
     // Mobile Drawer
-    mobileDrawer: css`
+    mobileDrawerRoot: css`
       width: 100%;
       overflow: hidden;
       position: absolute;
@@ -79,16 +84,18 @@ export const useCustomHeaderStyles = createStyles(
         .${prefixCls}-menu-item {
           color: ${token.colorTextSecondary};
           font-size: 18px;
-          padding: 12px 0;
+          padding: 0;
           margin: 0;
           border-bottom: none;
           transition: color 0.3s ease;
           text-align: left;
+          border-radius: 0;
+          border-bottom: 1px solid red;
+          width: 100%;
 
           &:hover {
             color: ${token.colorText};
             background: transparent;
-            border-bottom: none;
           }
 
           &.${prefixCls}-menu-item-selected {
