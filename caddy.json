@@ -7,20 +7,12 @@
             "subjects": [
               "shiryaev.am",
               "shiryaevam.pro",
-              "shiryaevam.tech",
               "shiryaevam.com",
               "shiryaevam.ru",
-              "shiryaevam.store",
-              "shiryaevam.site",
-              "shiryaevam.online",
               "www.shiryaev.am",
               "www.shiryaevam.pro",
-              "www.shiryaevam.tech",
               "www.shiryaevam.com",
-              "www.shiryaevam.ru",
-              "www.shiryaevam.store",
-              "www.shiryaevam.site",
-              "www.shiryaevam.online"
+              "www.shiryaevam.ru"
             ],
             "issuers": [
               {
@@ -77,41 +69,15 @@
                 "headers": { "Location": ["https://shiryaevam.ru{uri}"] }
               }]
             },
-            {
-              "match": [{ "host": ["www.shiryaevam.store"] }],
-              "handle": [{
-                "handler": "static_response",
-                "status_code": 308,
-                "headers": { "Location": ["https://shiryaevam.store{uri}"] }
-              }]
-            },
-            {
-              "match": [{ "host": ["www.shiryaevam.site"] }],
-              "handle": [{
-                "handler": "static_response",
-                "status_code": 308,
-                "headers": { "Location": ["https://shiryaevam.site{uri}"] }
-              }]
-            },
-            {
-              "match": [{ "host": ["www.shiryaevam.online"] }],
-              "handle": [{
-                "handler": "static_response",
-                "status_code": 308,
-                "headers": { "Location": ["https://shiryaevam.online{uri}"] }
-              }]
-            },
+
+
             {
               "match": [
                 { "host": [
                   "shiryaev.am",
                   "shiryaevam.pro",
-                  "shiryaevam.tech",
                   "shiryaevam.com",
-                  "shiryaevam.ru",
-                  "shiryaevam.store",
-                  "shiryaevam.site",
-                  "shiryaevam.online"
+                  "shiryaevam.ru"
                 ]}
               ],
               "handle": [
