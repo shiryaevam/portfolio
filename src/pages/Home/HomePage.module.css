@@ -30,7 +30,7 @@
 }
 
 .jobTitle {
-  color: #6366f1; /* colors.indigo[500] */
+  color: var(--app-indigo, #6366f1); /* fallback */
 }
 
 .inlineCode {
@@ -41,14 +41,14 @@
 }
 
 .inlineCode :global(.keyword) {
-  color: #6366f1; /* colors.indigo[500] */
+  color: var(--app-indigo, #6366f1);
 }
 
 .inlineCode :global(.link) {
-  color: #2dd4bf; /* colors.teal[400] */
+  color: var(--app-primary, #2dd4bf);
 }
 
 .inlineCode :global(.punctuation) {
-  color: #94a3b8;
+  color: var(--app-code-punctuation, #94a3b8);
 }
 

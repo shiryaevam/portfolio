@@ -1,0 +1,28 @@
+.page {
+  padding: 24px;
+  position: relative;
+  text-align: center;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.code404 {
+  font-size: 120px;
+  color: var(--app-accent, #00ff88);
+  margin: 0;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.subtitle {
+  color: var(--app-text, #e5e5e5);
+  margin-top: 16px;
+}
+
+@media (max-width: 480px) {
+  .code404 {
+    font-size: 88px;
+  }
+}

@@ -1,6 +1,6 @@
 .footer {
-  background: #0f172a;
-  border: 1px solid #334155; /* colors.slate[700] */
+  background: var(--app-surface, #0f172a);
+  border: 1px solid var(--app-border-muted, #334155); /* token.colorBorderSecondary */
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   width: 100%;
@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   padding: 16px 24px;
-  border-right: 1px solid #334155; /* colors.slate[700] */
+  border-right: 1px solid var(--app-border-muted, #334155); /* token.colorBorderSecondary */
 }
 
 .socialLinks {
@@ -31,11 +31,11 @@
     color 0.2s ease,
     box-shadow 0.2s ease,
     border-color 0.2s ease;
-  border-left: 1px solid #334155; /* colors.slate[700] */
+  border-left: 1px solid var(--app-border-muted, #334155); /* token.colorBorderSecondary */
 }
 
 .socialLink:hover {
-  border-color: #2dd4bf; /* colors.teal[400] */
+  border-color: var(--app-primary, #2dd4bf);
   box-shadow: 0 0 10px rgba(45, 212, 191, 0.2);
 }
 

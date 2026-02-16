@@ -41,6 +41,50 @@
 
 /* Typography scale from design system */
 :root {
+  /* App semantic tokens (CSS variables) */
+  --app-bg: #020618;
+  --app-surface: #0f172a;
+  --app-border: #374151;
+  --app-border-muted: #334155;
+  --app-text: #e2e8f0;
+  --app-text-muted: #90a1b9;
+  --app-text-secondary: #9ca3af;
+  --app-text-strong: #e5e7eb;
+  --app-heading: #f8fafc;
+  --app-primary: #2dd4bf;
+  --app-indigo: #6366f1;
+  --app-link: #ffa1ad;
+  --app-accent: #00ff88;
+
+  /* RGB helpers (for rgba(var(--...-rgb), a)) */
+  --app-primary-rgb: 45, 212, 191;
+  --app-accent-rgb: 0, 255, 136;
+  --app-indigo-rgb: 99, 102, 241;
+  --app-blue-rgb: 59, 130, 246;
+  --app-purple-rgb: 139, 92, 246;
+
+  /* Scrollbar */
+  --app-scrollbar-track: #1e293b;
+  --app-scrollbar-thumb-hover: #64748b;
+
+  /* Code editor tokens */
+  --app-code-text: #e5e5e5;
+  --app-code-comment: #64748b;
+  --app-code-string: #f59e0b;
+  --app-code-number: #22c55e;
+  --app-code-punctuation: #94a3b8;
+  --app-code-editor-bg: #0d1117;
+  --app-code-editor-border: #30363d;
+  --app-code-editor-topbar-from: #21262d;
+  --app-code-editor-topbar-to: #30363d;
+  --app-code-editor-dots: #7d8590;
+
+  /* Neon / surfaces */
+  --app-neon-surface-0: #0a0a0a;
+  --app-neon-surface-1: #1a1a1a;
+  --app-neon-surface-2: #111111;
+  --app-overlay-95: rgba(17, 17, 17, 0.95);
+
   /* Font sizes */
   --font-size-1: 14px;
   --font-size-2: 16px;
@@ -71,6 +115,18 @@
   --radius-2: 4px;  /* icon boxes */
   --radius-3: 8px;  /* buttons, backdrop, inputs */
   --radius-4: 16px; /* cards */
+
+  /* Spacing (numeric scale, px) */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 64px;
 }
 
 /* Typography classes */

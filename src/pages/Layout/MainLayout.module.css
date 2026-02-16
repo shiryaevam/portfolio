@@ -5,22 +5,24 @@
 }
 
 .mainContent {
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   margin: 0;
-  background: #0f172a;
-  border-left: solid 1px #374151; /* token.colorBorder (colors.gray[700]) */
-  border-right: solid 1px #374151; /* token.colorBorder (colors.gray[700]) */
+  background: var(--app-surface, #0f172a);
+  border-left: solid 1px var(--app-border, #374151); /* token.colorBorder */
+  border-right: solid 1px var(--app-border, #374151); /* token.colorBorder */
+  scrollbar-gutter: stable;
 
   /* Скрываем скроллбар для WebKit браузеров (Chrome, Safari, Edge) */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   /* Скрываем скроллбар для Firefox */
   scrollbar-width: none;
 
   /* Для старых версий IE */
   -ms-overflow-style: none;
+}
+
+/* Важно: без nesting (&) — это чистый CSS */
+.mainContent::-webkit-scrollbar {
+  display: none;
 }
 

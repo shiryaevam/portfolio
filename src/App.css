@@ -26,14 +26,14 @@
     padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #020618;
-    color: #e2e8f0;
+    background: var(--app-bg, #020618);
+    color: var(--app-text, #e2e8f0);
     overflow-x: hidden;
   }
 
   #root {
     height: 100dvh;
-    background: #020618;
+    background: var(--app-bg, #020618);
     position: relative;
     overflow: hidden;
   }
@@ -44,27 +44,27 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #1e293b;
+    background: var(--app-scrollbar-track, #1e293b);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: var(--app-border-muted, #334155);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #64748b;
+    background: var(--app-scrollbar-thumb-hover, #64748b);
   }
 
   .foreground {
-    color: #90a1b9;
+    color: var(--app-text-muted, #90a1b9);
   }
 
   .linkForeground {
-    color: #ffa1ad;
+    color: var(--app-link, #ffa1ad);
   }
 
   .headingForeground {
-    color: #f8fafc;
+    color: var(--app-heading, #f8fafc);
   }
 }

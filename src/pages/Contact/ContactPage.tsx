@@ -6,6 +6,8 @@ import { Typography } from "antd";
 
 import type { LayoutContext } from "../../shared/types/OutletContextType.ts";
 
+import styles from "./ContactPage.module.css";
+
 const { Title } = Typography;
 
 const sampleCode = `// Contact me via:
@@ -21,17 +23,14 @@ const ContactPage: React.FC = () => {
   const { referenceContainer } = useOutletContext<LayoutContext>();
 
   return (
-    <div
-      ref={referenceContainer}
-      style={{ padding: "24px", position: "relative" }}
-    >
-      <Title level={1} style={{ color: "#00ff88" }}>
+    <div className={styles.page} ref={referenceContainer}>
+      <Title className={styles.title} level={1}>
         Contact Page - Coming Soon
       </Title>
       <p>Contact form and code editor will be implemented here.</p>
 
-      <div style={{ marginTop: "24px" }}>
-        <Title level={3} style={{ color: "#2dd4bf" }}>
+      <div className={styles.section}>
+        <Title className={styles.sectionTitle} level={3}>
           CodeEditor Component Test
         </Title>
         <CodeEditor height="300px" value={sampleCode} />

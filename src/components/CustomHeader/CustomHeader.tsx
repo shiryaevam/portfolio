@@ -118,7 +118,7 @@ export const CustomHeader = ({
       <Drawer
         styles={{
           body: {
-            background: "#0f172a"
+            background: "var(--app-surface, #0f172a)"
           },
           header: {
             display: "none"
