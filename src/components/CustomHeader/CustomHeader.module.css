@@ -1,5 +1,5 @@
 .headerNavigation {
-  background: transparent;
+  background: #0f172a;
   backdrop-filter: blur(10px);
   border: 1px solid #374151; /* token.colorBorder (colors.gray[700]) */
   padding: 16px 24px;
@@ -83,11 +83,12 @@
 
 .mobileDrawerBody {
   padding: 0;
+  background: #0f172a;
 }
 
 /* Mobile Menu */
 .mobileMenu {
-  background: transparent;
+  background: #0f172a;
   border: none;
   padding: 12px 0 0 0;
 }

@@ -118,7 +118,7 @@ export const CustomHeader = ({
       <Drawer
         styles={{
           body: {
-            background: "linear-gradient(180deg, #0f172a 0%, #020617 100%)"
+            background: "#0f172a"
           },
           header: {
             display: "none"
