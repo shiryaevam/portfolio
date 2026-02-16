@@ -1,0 +1,123 @@
+.headerNavigation {
+  background: transparent;
+  backdrop-filter: blur(10px);
+  border: 1px solid #374151; /* token.colorBorder (colors.gray[700]) */
+  padding: 16px 24px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Desktop Navigation */
+.desktopNav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .desktopNav {
+    display: none;
+  }
+}
+
+/* Desktop Menu */
+.desktopMenu {
+  background: transparent;
+  border: none;
+  line-height: 1;
+}
+
+.desktopMenu:global(.ant-menu) :global(.ant-menu-item) {
+  color: #9ca3af; /* token.colorTextSecondary (colors.gray[400]) */
+  font-size: 16px;
+  padding: 8px 0;
+  margin: 0 16px;
+  border-bottom: none;
+  transition: color 0.3s ease;
+}
+
+.desktopMenu:global(.ant-menu) :global(.ant-menu-item:hover) {
+  color: #e5e7eb; /* token.colorText (colors.gray[200]) */
+  border-bottom: none;
+}
+
+.desktopMenu:global(.ant-menu)
+  :global(.ant-menu-item.ant-menu-item-selected) {
+  color: #2dd4bf; /* token.colorPrimary (colors.teal[400]) */
+  border-bottom: none;
+}
+
+.desktopMenu:global(.ant-menu)
+  :global(.ant-menu-item.ant-menu-item-selected)::after {
+  border-bottom: 2px solid #2dd4bf; /* token.colorPrimary */
+}
+
+/* Mobile Menu Button */
+.mobileMenuBtn {
+  color: #2dd4bf; /* token.colorPrimary */
+  background: none;
+  border: none;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileMenuBtn {
+    display: block;
+  }
+}
+
+/* Mobile Drawer */
+.mobileDrawerRoot {
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+}
+
+.mobileDrawerBody {
+  padding: 0;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.mobileMenu:global(.ant-menu) :global(.ant-menu-item) {
+  color: #9ca3af; /* token.colorTextSecondary */
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+  border-bottom: none;
+  transition: color 0.3s ease;
+  text-align: left;
+  border-radius: 0;
+  border-bottom: 1px solid #334155; /* colors.slate[700] */
+  width: 100%;
+}
+
+.mobileMenu:global(.ant-menu) :global(.ant-menu-item:hover) {
+  color: #e5e7eb; /* token.colorText */
+  background: transparent;
+}
+
+.mobileMenu:global(.ant-menu) :global(.ant-menu-item.ant-menu-item-selected) {
+  color: #2dd4bf; /* token.colorPrimary */
+  background: transparent;
+  border-bottom: none;
+}
+
+.mobileMenu:global(.ant-menu)
+  :global(.ant-menu-item.ant-menu-item-selected)::after {
+  border-bottom: 2px solid #2dd4bf;
+}
+

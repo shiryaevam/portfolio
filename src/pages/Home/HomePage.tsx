@@ -5,12 +5,15 @@ import { Flex } from "antd";
 
 import type { LayoutContext } from "../../shared/types/OutletContextType.ts";
 
-import { useHomePageStyles } from "./HomePageStyles";
+import styles from "./HomePage.module.css";
 
 import BackgroundBlurs from "./BackgroundBlurs.svg";
 
+type ClassName = false | null | string | undefined;
+
+const cx = (...classNames: ClassName[]) => classNames.filter(Boolean).join(" ");
+
 export const HomePage = () => {
-  const { cx, styles } = useHomePageStyles();
   const { referenceContainer } = useOutletContext<LayoutContext>();
 
   return (

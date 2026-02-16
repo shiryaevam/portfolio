@@ -1,0 +1,26 @@
+.layout {
+  height: 100dvh;
+  background: transparent;
+  padding: 16px;
+}
+
+.mainContent {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 0;
+  background: transparent;
+  border-left: solid 1px #374151; /* token.colorBorder (colors.gray[700]) */
+  border-right: solid 1px #374151; /* token.colorBorder (colors.gray[700]) */
+
+  /* Скрываем скроллбар для WebKit браузеров (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Скрываем скроллбар для Firefox */
+  scrollbar-width: none;
+
+  /* Для старых версий IE */
+  -ms-overflow-style: none;
+}
+

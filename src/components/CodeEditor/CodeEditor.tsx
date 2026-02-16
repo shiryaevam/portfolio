@@ -1,6 +1,7 @@
 /* eslint-disable */
-import { useNeonStyles } from "../../styles/neonStyles";
 import React from "react";
+
+import neonStyles from "../../styles/neonStyles.module.css";
 
 interface CodeEditorProperties {
   height?: number | string;
@@ -13,8 +14,6 @@ const CodeEditor: React.FC<CodeEditorProperties> = ({
   height = "400px",
   value
 }) => {
-  const { styles } = useNeonStyles();
-
   // Простая подсветка синтаксиса для JavaScript
   const highlightCode = (code: string) =>
     code
@@ -50,7 +49,7 @@ const CodeEditor: React.FC<CodeEditorProperties> = ({
         overflow: "auto",
         position: "relative"
       }}
-      className={styles.codeEditorStyle}
+      className={neonStyles.codeEditorStyle}
     >
       <pre
         style={{

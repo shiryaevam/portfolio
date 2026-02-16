@@ -7,7 +7,11 @@ import { Button, Drawer, Menu } from "antd";
 
 import type { ItemType } from "antd/es/menu/interface";
 
-import { useCustomHeaderStyles } from "./CustomHeaderStyles";
+import styles from "./CustomHeader.module.css";
+
+type ClassName = false | null | string | undefined;
+
+const cx = (...classNames: ClassName[]) => classNames.filter(Boolean).join(" ");
 
 export const CustomHeader = ({
   container
@@ -16,7 +20,6 @@ export const CustomHeader = ({
 }) => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const location = useLocation();
-  const { cx, styles } = useCustomHeaderStyles();
 
   const menuItems: ItemType[] = [
     {

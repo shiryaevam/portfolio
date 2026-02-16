@@ -1,0 +1,242 @@
+.slideInLeft {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slideInRight {
+  animation: slideInRight 0.8s ease-out 0.2s both;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.blueNeon {
+  color: #3b82f6;
+  text-shadow:
+    0 0 5px rgba(59, 130, 246, 0.5),
+    0 0 10px rgba(59, 130, 246, 0.3),
+    0 0 15px rgba(59, 130, 246, 0.1);
+}
+
+.codeEditorStyle {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px; /* token.borderRadius */
+  overflow: hidden;
+  position: relative;
+}
+
+.codeEditorStyle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: linear-gradient(90deg, #21262d 0%, #30363d 100%);
+  border-bottom: 1px solid #30363d;
+  z-index: 0;
+}
+
+.codeEditorStyle::after {
+  content: "● ● ●";
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  color: #7d8590;
+  font-size: 12px;
+  z-index: 0;
+}
+
+.codeEditorStyle pre {
+  margin-top: 32px !important;
+  padding: 16px !important;
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gameInterface {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  border: 2px solid #2dd4bf; /* token.colorPrimary */
+  border-radius: 16px; /* token.borderRadiusLG */
+  padding: 24px;
+  position: relative;
+  box-shadow:
+    0 0 20px rgba(0, 255, 136, 0.2),
+    inset 0 0 20px rgba(0, 255, 136, 0.05);
+}
+
+.gameInterface::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ff88, #8b5cf6, #3b82f6, #00ff88);
+  border-radius: 16px; /* token.borderRadiusLG */
+  z-index: -1;
+  animation: borderGlow 3s linear infinite;
+}
+
+@keyframes borderGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gameProgressBar {
+  background: #1a1a1a;
+  border: 1px solid #2dd4bf; /* token.colorPrimary */
+  border-radius: 20px;
+  height: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.gameProgressBar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #00ff88 0%, #8b5cf6 100%);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  animation: progressGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes progressGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+  }
+}
+
+.hoverScale {
+  transition: transform 0.3s ease;
+}
+
+.hoverScale:hover {
+  transform: scale(1.02);
+}
+
+.mobileMenu {
+  background: rgba(17, 17, 17, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid #374151; /* token.colorBorder */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.neonButton {
+  position: relative;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  border: 1px solid #2dd4bf; /* token.colorPrimary */
+  color: #2dd4bf; /* token.colorPrimary */
+  box-shadow:
+    0 0 10px rgba(0, 255, 136, 0.3),
+    inset 0 0 10px rgba(0, 255, 136, 0.1);
+  transition: all 0.3s ease;
+}
+
+.neonButton:hover {
+  box-shadow:
+    0 0 20px rgba(0, 255, 136,  0.5),
+    inset 0 0 20px rgba(0, 255, 136, 0.2);
+  transform: translateY(-2px);
+}
+
+.neonButton:active {
+  transform: translateY(0);
+}
+
+.neonCard {
+  background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+  border: 1px solid #374151; /* token.colorBorder */
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 255, 136, 0.1);
+  transition: all 0.3s ease;
+}
+
+.neonCard:hover {
+  border-color: #2dd4bf; /* token.colorPrimary */
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0, 255, 136, 0.3);
+  transform: translateY(-4px);
+}
+
+.neonText {
+  color: #2dd4bf; /* token.colorPrimary */
+  text-shadow:
+    0 0 5px rgba(0, 255, 136, 0.5),
+    0 0 10px rgba(0, 255, 136, 0.3),
+    0 0 15px rgba(0, 255, 136, 0.1);
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px rgba(0, 255, 136, 0.3),
+      inset 0 0 10px rgba(0, 255, 136, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(0, 255, 136, 0.5),
+      inset 0 0 20px rgba(0, 255, 136, 0.2);
+  }
+}
+
+.purpleNeon {
+  color: #8b5cf6;
+  text-shadow:
+    0 0 5px rgba(139, 92, 246, 0.5),
+    0 0 10px rgba(139, 92, 246, 0.3),
+    0 0 15px rgba(139, 92, 246, 0.1);
+}
+
