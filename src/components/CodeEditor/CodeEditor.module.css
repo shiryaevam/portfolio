@@ -1,0 +1,23 @@
+.root {
+  height: var(--code-editor-height, 400px);
+  font-family: var(--font-family-primary, "Fira Code", Consolas, Monaco, monospace);
+  font-size: var(--font-size-1, 14px);
+  line-height: 1.6;
+  padding: var(--space-5, 16px);
+  overflow: auto;
+  position: relative;
+}
+
+.pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: var(--app-code-text, #e5e5e5);
+}
+
+.code {
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}

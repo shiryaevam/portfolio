@@ -40,21 +40,7 @@ export default defineConfig({
     }
   },
   plugins: [
-    react({
-      babel: {
-        plugins: [
-          [
-            "babel-plugin-antd-style",
-            {
-              libraryDirectory: "lib",
-              // Опции плагина (необязательно)
-              libraryName: "antd-style",
-              style: true // или 'css' для импорта CSS файлов
-            }
-          ]
-        ]
-      }
-    }),
+    react(),
     svgr({
       include: "**/*.svg",
       svgrOptions: {

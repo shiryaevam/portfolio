@@ -1,62 +1,70 @@
-/*@keyframes pulse {*/
-/*  0%, 100% {*/
-/*    box-shadow: */
-/*      0 0 10px rgba(0, 255, 136, 0.3),*/
-/*      inset 0 0 10px rgba(0, 255, 136, 0.1);*/
-/*  }*/
-/*  50% {*/
-/*    box-shadow: */
-/*      0 0 20px rgba(0, 255, 136, 0.5),*/
-/*      inset 0 0 20px rgba(0, 255, 136, 0.2);*/
-/*  }*/
-/*}*/
+/* Порядок CSS layers: antd ниже, приложение выше */
+@layer antd, app;
 
-/* Сброс стилей */
-* {
+@layer app {
+  /*@keyframes pulse {*/
+  /*  0%, 100% {*/
+  /*    box-shadow: */
+  /*      0 0 10px rgba(0, 255, 136, 0.3),*/
+  /*      inset 0 0 10px rgba(0, 255, 136, 0.1);*/
+  /*  }*/
+  /*  50% {*/
+  /*    box-shadow: */
+  /*      0 0 20px rgba(0, 255, 136, 0.5),*/
+  /*      inset 0 0 20px rgba(0, 255, 136, 0.2);*/
+  /*  }*/
+  /*}*/
+
+  /* Сброс стилей */
+  * {
     box-sizing: border-box;
-    font-family: 'Fira Code', 'Courier New', monospace;
-}
+    font-family: "Fira Code", "Courier New", monospace;
+  }
 
-body {
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-    background: #020618;
-  color: #e2e8f0;
-  overflow-x: hidden;
-}
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--app-bg, #020618);
+    color: var(--app-text, #e2e8f0);
+    overflow-x: hidden;
+  }
 
-#root {
-  height: 100dvh;
-  background: #020618;
-  position: relative;
+  #root {
+    height: 100dvh;
+    background: var(--app-bg, #020618);
+    position: relative;
     overflow: hidden;
-}
+  }
 
-/* Стили для скроллбара */
-::-webkit-scrollbar {
-  width: 8px;
-}
+  /* Стили для скроллбара */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 
-::-webkit-scrollbar-track {
-  background: #1e293b;
-}
+  ::-webkit-scrollbar-track {
+    background: var(--app-scrollbar-track, #1e293b);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
-}
+  ::-webkit-scrollbar-thumb {
+    background: var(--app-border-muted, #334155);
+    border-radius: 4px;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-.foreground {
-    color:#90A1B9
-}
-.linkForeground {
-    color: #FFA1AD
-}
-.headingForeground {
-    color: #F8FAFC
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--app-scrollbar-thumb-hover, #64748b);
+  }
+
+  .foreground {
+    color: var(--app-text-muted, #90a1b9);
+  }
+
+  .linkForeground {
+    color: var(--app-link, #ffa1ad);
+  }
+
+  .headingForeground {
+    color: var(--app-heading, #f8fafc);
+  }
 }

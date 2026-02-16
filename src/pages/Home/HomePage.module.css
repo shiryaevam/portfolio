@@ -1,0 +1,54 @@
+.wrapper {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.backgroundSvg {
+  position: absolute;
+  top: -14dvh;
+  left: 0;
+  width: 120dvw;
+  height: 110dvh;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.introductionContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.jobTitle {
+  color: var(--app-indigo, #6366f1); /* fallback */
+}
+
+.inlineCode {
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.inlineCode :global(.keyword) {
+  color: var(--app-indigo, #6366f1);
+}
+
+.inlineCode :global(.link) {
+  color: var(--app-primary, #2dd4bf);
+}
+
+.inlineCode :global(.punctuation) {
+  color: var(--app-code-punctuation, #94a3b8);
+}
+

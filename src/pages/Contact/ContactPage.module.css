@@ -1,0 +1,16 @@
+.page {
+  padding: 24px;
+  position: relative;
+}
+
+.title {
+  color: var(--app-accent, #00ff88);
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.sectionTitle {
+  color: var(--app-primary, #2dd4bf);
+}
