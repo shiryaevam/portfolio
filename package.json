@@ -12,8 +12,8 @@
     "type-check": "tsc -b"
   },
   "dependencies": {
-    "antd": "^6.0.0",
-    "@ant-design/icons": "^6.0.0",
+    "@ant-design/icons": "^6.1.0",
+    "antd": "6.3.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.1"
