@@ -10,10 +10,50 @@ export const theme: ThemeConfig = {
   algorithm: antTheme.darkAlgorithm,
   components: {
     Button: {
-      colorPrimaryHover: "#62748E",
+      borderColorDisabled: "#45556C", // slate-600
+      borderRadius: 8, // radius.3
+      colorBgContainerDisabled: "#45556C", // slate-600
+      // === Danger/Error Button ===
+      colorError: "#FB2C36", // semantic.error (red-500)
+
+      colorErrorActive: "#E7000B", // red-600
+      colorErrorBg: "#FB2C36", // red-500
+      colorErrorBgHover: "#FF6467", // red-400
+      colorErrorBorderHover: "#FF6467", // red-400
+      colorErrorHover: "#FF6467", // semantic.error-hover (red-400)
+      colorErrorText: "#FB2C36", // red-500
+      // === Link Button ===
+      colorLink: "#FFA1AD", // theme.link (rose-300)
+      colorLinkActive: "#FF637E", // rose-400
+
+      colorLinkHover: "#FFCCD2", // theme.link-hover (rose-200)
+      // === Primary Button ===
+      colorPrimary: "#FFB86A", // primary.bg (orange-300)
+      colorPrimaryActive: "#FF8904", // orange-400
+      colorPrimaryHover: "#FFD6A7", // primary.hover (orange-200)
+      // === Disabled State ===
+      colorTextDisabled: "#62748E", // slate-500
+      defaultActiveBg: "#1D293D", // slate-800
+      defaultActiveBorderColor: "#1D293D", // slate-800
+
+      // === Default Button ===
+      defaultBg: "#314158", // slate-700
+      defaultBorderColor: "#314158", // slate-700
+      defaultColor: "#F8FAFC", // slate-50
+
+      defaultGhostBorderColor: "#90A1B9", // theme.foreground (slate-400)
+      defaultGhostColor: "#90A1B9", // theme.foreground (slate-400)
+      defaultHoverBg: "#45556C", // slate-600
+
+      defaultHoverBorderColor: "#45556C", // slate-600
+      defaultHoverColor: "#F8FAFC", // slate-50
+      // === Ghost Button ===
+      ghostBg: "transparent",
+
+      // === Spacing ===
       paddingBlock: 10, // spacing.button.top-bottom
       paddingInline: 12, // spacing.button.left-right
-      primaryColor: "#020618" // primary.inverted (slate-950)
+      primaryColor: "#020618" // primary.inverted (slate-950) - text on primary
     },
     Card: {
       colorBgContainer: "#0F172B",
