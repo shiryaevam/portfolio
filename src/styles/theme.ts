@@ -10,7 +10,7 @@ export const theme: ThemeConfig = {
   algorithm: antTheme.darkAlgorithm,
   components: {
     Button: {
-      colorPrimaryHover: "#FFD6A7", // primary.hover (orange-200)
+      colorPrimaryHover: "#62748E",
       paddingBlock: 10, // spacing.button.top-bottom
       paddingInline: 12, // spacing.button.left-right
       primaryColor: "#020618" // primary.inverted (slate-950)
@@ -25,7 +25,7 @@ export const theme: ThemeConfig = {
     },
     Menu: {
       colorBgContainer: "#0F172B",
-      colorItemBgSelected: "#314158"
+      itemSelectedBg: "#314158"
     },
     Modal: {
       colorBgElevated: "#1D293D"

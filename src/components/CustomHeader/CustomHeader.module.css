@@ -52,7 +52,6 @@
 }
 
 .desktopMenu:global(.ant-menu) :global(.ant-menu-item) {
-  color: var(--color-slate-500);
   font-size: var(--font-size-body-md);
   padding: var(--spacing-3) 0;
   margin: 0 var(--spacing-5);
@@ -61,24 +60,21 @@
 }
 
 .desktopMenu:global(.ant-menu) :global(.ant-menu-item:hover) {
-  color: var(--theme-heading);
   border-bottom: none;
 }
 
 .desktopMenu:global(.ant-menu)
   :global(.ant-menu-item.ant-menu-item-selected) {
-  color: var(--primary-bg);
   border-bottom: none;
 }
 
 .desktopMenu:global(.ant-menu)
   :global(.ant-menu-item.ant-menu-item-selected)::after {
-  border-bottom: 2px solid var(--primary-bg);
+  border-bottom: 2px solid var(--color-slate-500);
 }
 
 /* Mobile Menu Button */
 .mobileMenuBtn {
-  color: var(--primary-bg);
   background: none;
   border: none;
   display: none;
