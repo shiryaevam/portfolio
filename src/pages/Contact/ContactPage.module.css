@@ -1,16 +1,16 @@
 .page {
-  padding: 24px;
+  padding: var(--spacing-6);
   position: relative;
 }
 
 .title {
-  color: var(--app-accent, #00ff88);
+  color: var(--primary-bg);
 }
 
 .section {
-  margin-top: 24px;
+  margin-top: var(--spacing-6);
 }
 
 .sectionTitle {
-  color: var(--app-primary, #2dd4bf);
+  color: var(--color-indigo-400);
 }

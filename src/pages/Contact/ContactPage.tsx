@@ -1,4 +1,3 @@
-import React from "react";
 import { useOutletContext } from "react-router-dom";
 
 import CodeEditor from "@components/CodeEditor/CodeEditor";
@@ -19,7 +18,7 @@ const contact = {
 
 console.log("Feel free to reach out!");`;
 
-const ContactPage: React.FC = () => {
+const ContactPage = () => {
   const { referenceContainer } = useOutletContext<LayoutContext>();
 
   return (

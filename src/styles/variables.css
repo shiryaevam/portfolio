@@ -1,0 +1,298 @@
+/**
+ * CSS Design Tokens
+ * Generated from Figma Design Tokens
+ */
+
+:root {
+  /* ================================================
+     PRIMITIVE COLORS
+     ================================================ */
+
+  /* === Slate === */
+  --color-slate-50: #F8FAFC;
+  --color-slate-100: #F1F5F9;
+  --color-slate-200: #E2E8F0;
+  --color-slate-300: #CAD5E2;
+  --color-slate-400: #90A1B9;
+  --color-slate-500: #62748E;
+  --color-slate-600: #45556C;
+  --color-slate-700: #314158;
+  --color-slate-800: #1D293D;
+  --color-slate-900: #0F172B;
+  --color-slate-950: #020618;
+
+  /* === Orange === */
+  --color-orange-50: #FFF7ED;
+  --color-orange-100: #FFEDD4;
+  --color-orange-200: #FFD6A7;
+  --color-orange-300: #FFB86A;
+  --color-orange-400: #FF8904;
+  --color-orange-500: #FF6900;
+  --color-orange-600: #F54900;
+  --color-orange-700: #CA3500;
+  --color-orange-800: #9F2D00;
+  --color-orange-900: #7E2A0C;
+  --color-orange-950: #441306;
+
+  /* === Teal === */
+  --color-teal-50: #F0FDFA;
+  --color-teal-100: #CBFBF1;
+  --color-teal-200: #96F7E4;
+  --color-teal-300: #46ECD5;
+  --color-teal-400: #00D5BE;
+  --color-teal-500: #00BBA7;
+  --color-teal-600: #009689;
+  --color-teal-700: #00786F;
+  --color-teal-800: #005F5A;
+  --color-teal-900: #0B4F4A;
+  --color-teal-950: #022F2E;
+
+  /* === Indigo === */
+  --color-indigo-50: #EEF2FF;
+  --color-indigo-100: #E0E7FF;
+  --color-indigo-200: #C6D2FF;
+  --color-indigo-300: #A3B3FF;
+  --color-indigo-400: #7C86FF;
+  --color-indigo-500: #615FFF;
+  --color-indigo-600: #4F39F6;
+  --color-indigo-700: #432DD7;
+  --color-indigo-800: #372AAC;
+  --color-indigo-900: #312C85;
+  --color-indigo-950: #1E1A4D;
+
+  /* === Purple === */
+  --color-purple-50: #FAF5FF;
+  --color-purple-100: #F3E8FF;
+  --color-purple-200: #E9D4FF;
+  --color-purple-300: #DAB2FF;
+  --color-purple-400: #C27AFF;
+  --color-purple-500: #AD46FF;
+  --color-purple-600: #9810FA;
+  --color-purple-700: #8200DB;
+  --color-purple-800: #6E11B0;
+  --color-purple-900: #59168B;
+  --color-purple-950: #3C0366;
+
+  /* === Rose === */
+  --color-rose-50: #FFF1F2;
+  --color-rose-100: #FFE4E6;
+  --color-rose-200: #FFCCD2;
+  --color-rose-300: #FFA1AD;
+  --color-rose-400: #FF637E;
+  --color-rose-500: #FF2056;
+  --color-rose-600: #EC003F;
+  --color-rose-700: #C60036;
+  --color-rose-800: #A50036;
+  --color-rose-900: #8B0836;
+  --color-rose-950: #4D0218;
+
+  /* === Grey === */
+  --color-grey-50: #FFFFFF;
+  --color-grey-100: #F5F5F5;
+  --color-grey-200: #E5E5E5;
+  --color-grey-300: #D1D5DC;
+  --color-grey-400: #D4D4D4;
+  --color-grey-500: #A1A1A1;
+  --color-grey-600: #737373;
+  --color-grey-700: #525252;
+  --color-grey-800: #404040;
+  --color-grey-900: #171717;
+  --color-grey-950: #0A0A0A;
+
+  /* === Grey Alpha === */
+  --color-grey-alpha-50: rgba(255, 255, 255, 0.02);
+  --color-grey-alpha-100: rgba(245, 245, 245, 0.04);
+  --color-grey-alpha-200: rgba(229, 229, 229, 0.06);
+  --color-grey-alpha-300: rgba(209, 213, 220, 0.08);
+  --color-grey-alpha-400: rgba(212, 212, 212, 0.12);
+  --color-grey-alpha-500: rgba(161, 161, 161, 0.14);
+  --color-grey-alpha-600: rgba(115, 115, 115, 0.16);
+  --color-grey-alpha-700: rgba(82, 82, 82, 0.20);
+  --color-grey-alpha-800: rgba(64, 64, 64, 0.24);
+  --color-grey-alpha-900: rgba(23, 23, 23, 0.32);
+  --color-grey-alpha-950: rgba(10, 10, 10, 0.40);
+
+  /* === Red === */
+  --color-red-50: #FEF2F2;
+  --color-red-100: #FFE2E2;
+  --color-red-200: #FFC9C9;
+  --color-red-300: #FFA2A2;
+  --color-red-400: #FF6467;
+  --color-red-500: #FB2C36;
+  --color-red-600: #E7000B;
+  --color-red-700: #C10007;
+  --color-red-800: #9F0712;
+  --color-red-900: #82181A;
+  --color-red-950: #460809;
+
+  /* === Red Alpha === */
+  --color-red-alpha-50: rgba(254, 242, 242, 0.02);
+  --color-red-alpha-100: rgba(255, 226, 226, 0.04);
+  --color-red-alpha-200: rgba(255, 201, 201, 0.06);
+  --color-red-alpha-300: rgba(255, 162, 162, 0.08);
+  --color-red-alpha-400: rgba(255, 100, 103, 0.12);
+  --color-red-alpha-500: rgba(251, 44, 54, 0.14);
+  --color-red-alpha-600: rgba(231, 0, 11, 0.16);
+  --color-red-alpha-700: rgba(193, 0, 7, 0.20);
+  --color-red-alpha-800: rgba(159, 7, 18, 0.24);
+  --color-red-alpha-900: rgba(130, 24, 26, 0.28);
+  --color-red-alpha-950: rgba(70, 8, 9, 0.30);
+
+  /* === Green === */
+  --color-green-50: #F0FDF4;
+  --color-green-100: #DCFCE7;
+  --color-green-200: #B9F8CF;
+  --color-green-300: #7BF1A7;
+  --color-green-400: #05DF72;
+  --color-green-500: #00C950;
+  --color-green-600: #00A63E;
+  --color-green-700: #008235;
+  --color-green-800: #016630;
+  --color-green-900: #0D542B;
+  --color-green-950: #032E15;
+
+  /* === Green Alpha === */
+  --color-green-alpha-50: rgba(240, 253, 244, 0.02);
+  --color-green-alpha-100: rgba(220, 252, 231, 0.04);
+  --color-green-alpha-200: rgba(185, 248, 207, 0.06);
+  --color-green-alpha-300: rgba(123, 241, 167, 0.08);
+  --color-green-alpha-400: rgba(5, 223, 114, 0.12);
+  --color-green-alpha-500: rgba(0, 201, 80, 0.14);
+  --color-green-alpha-600: rgba(0, 166, 62, 0.16);
+  --color-green-alpha-700: rgba(0, 130, 53, 0.20);
+  --color-green-alpha-800: rgba(1, 102, 48, 0.24);
+  --color-green-alpha-900: rgba(13, 84, 43, 0.32);
+  --color-green-alpha-950: rgba(3, 46, 21, 0.30);
+
+  /* === Yellow === */
+  --color-yellow-50: #FEFCE8;
+  --color-yellow-100: #FEF9C2;
+  --color-yellow-200: #FFF085;
+  --color-yellow-300: #FFDF20;
+  --color-yellow-400: #FDC700;
+  --color-yellow-500: #F0B100;
+  --color-yellow-600: #D08700;
+  --color-yellow-700: #A65F00;
+  --color-yellow-800: #894B00;
+  --color-yellow-900: #733E0A;
+  --color-yellow-950: #432004;
+
+  /* === Yellow Alpha === */
+  --color-yellow-alpha-50: rgba(254, 252, 232, 0.02);
+  --color-yellow-alpha-100: rgba(254, 249, 194, 0.04);
+  --color-yellow-alpha-200: rgba(255, 240, 133, 0.06);
+  --color-yellow-alpha-300: rgba(255, 223, 32, 0.08);
+  --color-yellow-alpha-400: rgba(253, 199, 0, 0.12);
+  --color-yellow-alpha-500: rgba(240, 177, 0, 0.14);
+  --color-yellow-alpha-600: rgba(208, 135, 0, 0.16);
+  --color-yellow-alpha-700: rgba(166, 95, 0, 0.20);
+  --color-yellow-alpha-800: rgba(137, 75, 0, 0.24);
+  --color-yellow-alpha-900: rgba(115, 62, 10, 0.28);
+  --color-yellow-alpha-950: rgba(67, 32, 4, 0.30);
+
+  /* ================================================
+     SEMANTIC ALIASES (Theme)
+     ================================================ */
+
+  /* === Theme Colors === */
+  --theme-backdrop: var(--color-slate-950);
+  --theme-background: var(--color-slate-900);
+  --theme-stroke: var(--color-slate-700);
+  --theme-foreground: var(--color-slate-400);
+  --theme-heading: var(--color-slate-50);
+  --theme-link: var(--color-rose-300);
+  --theme-link-hover: var(--color-rose-200);
+
+  /* === Primary Colors === */
+  --primary-bg: var(--color-orange-300);
+  --primary-hover: var(--color-orange-200);
+  --primary-inverted: var(--color-slate-950);
+
+  /* === Semantic: Success === */
+  --semantic-success: var(--color-green-500);
+  --semantic-success-hover: var(--color-green-400);
+  --semantic-success-inverted: var(--color-slate-950);
+  --semantic-success-alpha: rgba(3, 46, 21, 0.30);
+
+  /* === Semantic: Error === */
+  --semantic-error: var(--color-red-500);
+  --semantic-error-hover: var(--color-red-400);
+  --semantic-error-inverted: var(--color-slate-950);
+  --semantic-error-alpha: rgba(70, 8, 9, 0.30);
+
+  /* === Semantic: Warning === */
+  --semantic-warning: var(--color-yellow-500);
+  --semantic-warning-hover: var(--color-yellow-400);
+  --semantic-warning-inverted: var(--color-slate-950);
+  --semantic-warning-alpha: rgba(67, 32, 4, 0.30);
+
+  /* ================================================
+     TYPOGRAPHY
+     ================================================ */
+
+  /* === Font Family === */
+  --font-family: 'Fira Code', 'Courier New', monospace;
+
+  /* === Font Weights === */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-retina: 450;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* === Font Sizes: Body === */
+  --font-size-body-sm: 14px;
+  --font-size-body-md: 16px;
+  --font-size-body-lg: 18px;
+
+  /* === Font Sizes: Heading === */
+  --font-size-h6: 20px;
+  --font-size-h5: 24px;
+  --font-size-h4: 30px;
+  --font-size-h3: 36px;
+  --font-size-h2: 48px;
+  --font-size-h1: 60px;
+
+  /* === Line Heights: Body === */
+  --line-height-body-sm: 19.6px;
+  --line-height-body-md: 24px;
+  --line-height-body-lg: 27px;
+
+  /* === Line Heights: Heading === */
+  --line-height-h6: 30px;
+  --line-height-h5: 33.6px;
+  --line-height-h4: 42px;
+  --line-height-h3: 46.8px;
+  --line-height-h2: 57.6px;
+  --line-height-h1: 66px;
+
+  /* ================================================
+     SPACING
+     ================================================ */
+
+  --spacing-0: 0px;
+  --spacing-1: 2px;
+  --spacing-2: 4px;
+  --spacing-3: 8px;
+  --spacing-4: 12px;
+  --spacing-5: 16px;
+  --spacing-6: 24px;
+  --spacing-7: 32px;
+  --spacing-8: 40px;
+  --spacing-9: 48px;
+  --spacing-10: 64px;
+
+  /* === Button Spacing === */
+  --spacing-button-y: 10px;
+  --spacing-button-x: 12px;
+
+  /* ================================================
+     BORDER RADIUS
+     ================================================ */
+
+  --radius-0: 0px;
+  --radius-1: 2px;
+  --radius-2: 4px;
+  --radius-3: 8px;
+  --radius-4: 16px;
+}

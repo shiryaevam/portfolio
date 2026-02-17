@@ -1,4 +1,3 @@
-import React from "react";
 import { useOutletContext } from "react-router-dom";
 
 import { Typography } from "antd";
@@ -9,7 +8,7 @@ import styles from "./ProjectsPage.module.css";
 
 const { Title } = Typography;
 
-const ProjectsPage: React.FC = () => {
+const ProjectsPage = () => {
   const { referenceContainer } = useOutletContext<LayoutContext>();
 
   return (

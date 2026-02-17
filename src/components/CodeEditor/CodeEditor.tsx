@@ -1,12 +1,9 @@
-import neonStyles from "../../styles/neonStyles.module.css";
-import React from "react";
+import type { CSSProperties } from "react";
 
 import styles from "./CodeEditor.module.css";
 
 interface CodeEditorProperties {
   height?: number | string;
-  language?: string;
-  readOnly?: boolean;
   value: string;
 }
 
@@ -258,19 +255,13 @@ const highlightCode = (input: string) => {
   return output;
 };
 
-const CodeEditor: React.FC<CodeEditorProperties> = ({
-  height = "400px",
-  value
-}) => {
+const CodeEditor = ({ height = "400px", value }: CodeEditorProperties) => {
   const rootStyle = { ["--code-editor-height" as string]: height } as
-    | React.CSSProperties
+    | CSSProperties
     | undefined;
 
   return (
-    <div
-      className={`${neonStyles.codeEditorStyle} ${styles.root}`}
-      style={rootStyle}
-    >
+    <div className={styles.root} style={rootStyle}>
       <pre className={styles.pre}>
         <code
           dangerouslySetInnerHTML={{

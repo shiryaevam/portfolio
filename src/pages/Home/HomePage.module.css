@@ -30,7 +30,20 @@
 }
 
 .jobTitle {
-  color: var(--app-indigo, #6366f1); /* fallback */
+  color: var(--color-indigo-400);
+}
+
+/* Text color classes */
+.textForeground {
+  color: var(--theme-foreground);
+}
+
+.textHeading {
+  color: var(--theme-heading);
+}
+
+.textLink {
+  color: var(--theme-link);
 }
 
 .inlineCode {
@@ -41,14 +54,13 @@
 }
 
 .inlineCode :global(.keyword) {
-  color: var(--app-indigo, #6366f1);
+  color: var(--color-indigo-400);
 }
 
 .inlineCode :global(.link) {
-  color: var(--app-primary, #2dd4bf);
+  color: var(--primary-bg);
 }
 
 .inlineCode :global(.punctuation) {
-  color: var(--app-code-punctuation, #94a3b8);
+  color: var(--color-slate-400);
 }
-

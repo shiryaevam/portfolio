@@ -1,4 +1,3 @@
-import { colorsClasses, typographyClasses } from "@styles";
 import { useOutletContext } from "react-router-dom";
 
 import { Flex } from "antd";
@@ -8,10 +7,6 @@ import type { LayoutContext } from "../../shared/types/OutletContextType.ts";
 import styles from "./HomePage.module.css";
 
 import BackgroundBlurs from "./BackgroundBlurs.svg";
-
-type ClassName = false | null | string | undefined;
-
-const cx = (...classNames: ClassName[]) => classNames.filter(Boolean).join(" ");
 
 export const HomePage = () => {
   const { referenceContainer } = useOutletContext<LayoutContext>();
@@ -32,36 +27,16 @@ export const HomePage = () => {
           vertical
         >
           <div>
-            <span
-              className={cx(
-                typographyClasses.bodyLarge,
-                colorsClasses.foreground
-              )}
-            >
-              Hi all. I am
-            </span>
+            <span className={styles.textForeground}>Hi all. I am</span>
 
-            <h2 className={colorsClasses.headingForeground}>
-              Shiryaev Aleksey
-            </h2>
+            <h2 className={styles.textHeading}>Shiryaev Aleksey</h2>
             <h6 className={styles.jobTitle}>{">"} Front-end developer</h6>
           </div>
           <div>
-            <p
-              className={cx(
-                colorsClasses.foreground,
-                typographyClasses.bodySmall
-              )}
-            >
+            <p className={styles.textForeground}>
               {"//"} find my profile on Github:
             </p>
-            <pre
-              className={cx(
-                styles.inlineCode,
-                typographyClasses.bodySmall,
-                colorsClasses.headingForeground
-              )}
-            >
+            <pre className={styles.inlineCode}>
               <span className="keyword">const</span>
               <span className="link"> githubLink </span>
               <span className="punctuation">=</span>
@@ -71,7 +46,7 @@ export const HomePage = () => {
                 rel="noreferrer"
                 target={"_blank"}
               >
-                <span className={colorsClasses.linkForeground}>
+                <span className={styles.textLink}>
                   &#34;https://github.com/shiryaevam&#34;
                 </span>
               </a>

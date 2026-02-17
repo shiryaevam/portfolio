@@ -1,5 +1,5 @@
 .page {
-  padding: 24px;
+  padding: var(--spacing-6);
   position: relative;
   text-align: center;
   min-height: 100%;
@@ -11,14 +11,14 @@
 
 .code404 {
   font-size: 120px;
-  color: var(--app-accent, #00ff88);
+  color: var(--primary-bg);
   margin: 0;
-  text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+  text-shadow: 0 0 20px rgba(255, 184, 106, 0.5);
 }
 
 .subtitle {
-  color: var(--app-text, #e5e5e5);
-  margin-top: 16px;
+  color: var(--theme-foreground);
+  margin-top: var(--spacing-5);
 }
 
 @media (max-width: 480px) {
