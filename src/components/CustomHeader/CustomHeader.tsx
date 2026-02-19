@@ -107,7 +107,7 @@ export const CustomHeader = ({
           />
         </div>
       </div>
-      {titlePage[location.pathname] ? (
+      {titlePage[location.pathname] && !mobileMenuVisible ? (
         <Flex
           align="center"
           className={styles.mobileTitleContainer}

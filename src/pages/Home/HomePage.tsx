@@ -36,11 +36,10 @@ export const HomePage = () => {
             <p className={styles.textForeground}>
               {"//"} find my profile on Github:
             </p>
-            <pre className={styles.inlineCode}>
-              <span className="keyword">const</span>
-              <span className="link"> githubLink </span>
-              <span className="punctuation">=</span>
-              <span> </span>
+            <code className={styles.inlineCode}>
+              <span className="keyword">const</span>{" "}
+              <span className="link">githubLink</span>{" "}
+              <span className="punctuation">=</span>{" "}
               <a
                 href="https://github.com/shiryaevam"
                 rel="noreferrer"
@@ -50,7 +49,7 @@ export const HomePage = () => {
                   &#34;https://github.com/shiryaevam&#34;
                 </span>
               </a>
-            </pre>
+            </code>
           </div>
         </Flex>
       </div>

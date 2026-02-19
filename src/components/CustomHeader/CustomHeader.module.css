@@ -100,13 +100,11 @@
 
 /* Mobile Menu */
 .mobileMenu {
-  background: var(--theme-background);
   border: none;
   padding: var(--spacing-4) 0 0 0;
 }
 
 .mobileMenu:global(.ant-menu) :global(.ant-menu-item) {
-  color: var(--color-slate-500);
   font-size: var(--font-size-body-lg);
   margin: 0;
   height: 45px;
@@ -120,7 +118,6 @@
 }
 
 .mobileMenu:global(.ant-menu) :global(.ant-menu-item:hover) {
-  color: var(--theme-heading);
   background: transparent;
 }
 
