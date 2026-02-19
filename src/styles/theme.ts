@@ -59,6 +59,9 @@ export const theme: ThemeConfig = {
       colorBgContainer: "#0F172B",
       colorBorderSecondary: "#314158"
     },
+    Collapse: {
+      headerBg: "#314158"
+    },
     Input: {
       colorBgContainer: "#0F172B", // theme.background (slate-900)
       colorBorder: "#314158" // theme.stroke (slate-700)

@@ -1,8 +1,10 @@
 .page {
-  padding: var(--spacing-6);
+
   position: relative;
 }
 
-.title {
-  color: var(--primary-bg);
+.personalInfo {
+  padding: var(--spacing-6);
+ font-size: var(--font-size-body-md);
+  line-height: var(--line-height-body-lg);
 }
