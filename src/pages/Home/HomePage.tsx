@@ -8,6 +8,10 @@ import styles from "./HomePage.module.css";
 
 import BackgroundBlurs from "./BackgroundBlurs.svg";
 
+type ClassName = false | null | string | undefined;
+
+const cx = (...classNames: ClassName[]) => classNames.filter(Boolean).join(" ");
+
 export const HomePage = () => {
   const { referenceContainer } = useOutletContext<LayoutContext>();
 
