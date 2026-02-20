@@ -1,4 +1,3 @@
-import React from "react";
 import { useOutletContext } from "react-router-dom";
 
 import { Typography } from "antd";
@@ -9,7 +8,7 @@ import styles from "./NotFoundPage.module.css";
 
 const { Title } = Typography;
 
-const NotFoundPage: React.FC = () => {
+const NotFoundPage = () => {
   const { referenceContainer } = useOutletContext<LayoutContext>();
 
   return (

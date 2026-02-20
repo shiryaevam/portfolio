@@ -1,19 +1,18 @@
 .layout {
   height: 100dvh;
   background: transparent;
-  padding: 16px;
+  padding: var(--spacing-5);
 }
 
 .mainContent {
   overflow-y: auto;
   overflow-x: hidden;
   margin: 0;
-  background: var(--app-surface, #0f172a);
-  border-left: solid 1px var(--app-border, #374151); /* token.colorBorder */
-  border-right: solid 1px var(--app-border, #374151); /* token.colorBorder */
+  background: var(--theme-background);
+  border-left: solid 1px var(--theme-stroke);
+  border-right: solid 1px var(--theme-stroke);
   scrollbar-gutter: stable;
 
-  /* Скрываем скроллбар для WebKit браузеров (Chrome, Safari, Edge) */
   /* Скрываем скроллбар для Firefox */
   scrollbar-width: none;
 
@@ -21,8 +20,7 @@
   -ms-overflow-style: none;
 }
 
-/* Важно: без nesting (&) — это чистый CSS */
+/* Скрываем скроллбар для WebKit браузеров (Chrome, Safari, Edge) */
 .mainContent::-webkit-scrollbar {
   display: none;
 }
-

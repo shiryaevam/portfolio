@@ -1,11 +1,10 @@
-export { colors, colorsClasses, theme } from "./theme.ts";
+/**
+ * Styles Module
+ * Central export for all styling utilities
+ */
 
-// Typography exports
-export {
-  getFontSize,
-  getFontWeight,
-  getLineHeight,
-  typographyClasses,
-  // JavaScript значения
-  typographyStyles
-} from "./typography";
+// Ant Design Theme Configuration
+export { theme } from "./theme";
+
+// CSS Variables are imported via variables.css in App.css
+// Import this file where you need the Ant Design theme

@@ -1,8 +1,8 @@
 .page {
-  padding: 24px;
+  padding: var(--spacing-6);
   position: relative;
 }
 
 .title {
-  color: var(--app-accent, #00ff88);
+  color: var(--primary-bg);
 }

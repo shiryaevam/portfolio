@@ -1,4 +1,3 @@
-import { colorsClasses, typographyClasses } from "@styles";
 import { useEffect, useState } from "react";
 import {
   NavLink,
@@ -7,18 +6,20 @@ import {
 } from "react-router-dom";
 
 import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
-import { Button, Drawer, Menu } from "antd";
+import { Button, Drawer, Flex, Menu } from "antd";
 
 import type { ItemType } from "antd/es/menu/interface";
 
 import styles from "./CustomHeader.module.css";
 
-const classNavlinlk = ({ isActive }: NavLinkRenderProps): string =>
-  isActive ? colorsClasses.headingForeground : colorsClasses.foreground;
+const classNavLink = ({ isActive }: NavLinkRenderProps): string =>
+  isActive ? styles.navLinkActive : styles.navLink;
 
-type ClassName = false | null | string | undefined;
-
-const cx = (...classNames: ClassName[]) => classNames.filter(Boolean).join(" ");
+const titlePage: Record<string, string> = {
+  "/about": "_about-me",
+  "/contact": "_contact-me",
+  "/projects": "_projects"
+};
 
 export const CustomHeader = ({
   containerRef
@@ -42,7 +43,7 @@ export const CustomHeader = ({
     },
     {
       label: (
-        <NavLink className={classNavlinlk} to={"/"}>
+        <NavLink className={classNavLink} to={"/"}>
           _hello
         </NavLink>
       ),
@@ -50,7 +51,7 @@ export const CustomHeader = ({
     },
     {
       label: (
-        <NavLink className={classNavlinlk} to={"/about"}>
+        <NavLink className={classNavLink} to={"/about"}>
           _about-me
         </NavLink>
       ),
@@ -58,7 +59,7 @@ export const CustomHeader = ({
     },
     {
       label: (
-        <NavLink className={classNavlinlk} to={"/projects"}>
+        <NavLink className={classNavLink} to={"/projects"}>
           _projects
         </NavLink>
       ),
@@ -66,7 +67,7 @@ export const CustomHeader = ({
     },
     {
       label: (
-        <NavLink className={classNavlinlk} to={"/contact"}>
+        <NavLink className={classNavLink} to={"/contact"}>
           _contact-me
         </NavLink>
       ),
@@ -84,14 +85,7 @@ export const CustomHeader = ({
       <div className={styles.headerNavigation}>
         <div className={styles.headerContainer}>
           {/* Logo */}
-          <div
-            className={cx(
-              typographyClasses.bodyMedium,
-              colorsClasses.foreground
-            )}
-          >
-            aleksey-shiryaev
-          </div>
+          <div className={styles.logo}>aleksey-shiryaev</div>
 
           {/* Desktop Navigation */}
           <div className={styles.desktopNav}>
@@ -113,12 +107,20 @@ export const CustomHeader = ({
           />
         </div>
       </div>
-
+      {titlePage[location.pathname] && !mobileMenuVisible ? (
+        <Flex
+          align="center"
+          className={styles.mobileTitleContainer}
+          justify="start"
+        >
+          {titlePage[location.pathname]}
+        </Flex>
+      ) : null}
       {/* Mobile Drawer */}
       <Drawer
         styles={{
           body: {
-            background: "var(--app-surface, #0f172a)"
+            background: "var(--theme-background)"
           },
           header: {
             display: "none"

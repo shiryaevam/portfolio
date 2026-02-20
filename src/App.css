@@ -1,24 +1,14 @@
+/* Import design tokens CSS variables */
+@import './styles/variables.css';
+
 /* Порядок CSS layers: antd ниже, приложение выше */
 @layer antd, app;
 
 @layer app {
-  /*@keyframes pulse {*/
-  /*  0%, 100% {*/
-  /*    box-shadow: */
-  /*      0 0 10px rgba(0, 255, 136, 0.3),*/
-  /*      inset 0 0 10px rgba(0, 255, 136, 0.1);*/
-  /*  }*/
-  /*  50% {*/
-  /*    box-shadow: */
-  /*      0 0 20px rgba(0, 255, 136, 0.5),*/
-  /*      inset 0 0 20px rgba(0, 255, 136, 0.2);*/
-  /*  }*/
-  /*}*/
-
   /* Сброс стилей */
   * {
     box-sizing: border-box;
-    font-family: "Fira Code", "Courier New", monospace;
+    font-family: var(--font-family), serif;
   }
 
   body {
@@ -26,14 +16,14 @@
     padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: var(--app-bg, #020618);
-    color: var(--app-text, #e2e8f0);
+    background: var(--theme-backdrop);
+    color: var(--theme-foreground);
     overflow-x: hidden;
   }
 
   #root {
     height: 100dvh;
-    background: var(--app-bg, #020618);
+    background: var(--theme-backdrop);
     position: relative;
     overflow: hidden;
   }
@@ -44,27 +34,15 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--app-scrollbar-track, #1e293b);
+    background: var(--color-slate-800);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--app-border-muted, #334155);
-    border-radius: 4px;
+    background: var(--theme-stroke);
+    border-radius: var(--radius-2);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--app-scrollbar-thumb-hover, #64748b);
-  }
-
-  .foreground {
-    color: var(--app-text-muted, #90a1b9);
-  }
-
-  .linkForeground {
-    color: var(--app-link, #ffa1ad);
-  }
-
-  .headingForeground {
-    color: var(--app-heading, #f8fafc);
+    background: var(--color-slate-500);
   }
 }

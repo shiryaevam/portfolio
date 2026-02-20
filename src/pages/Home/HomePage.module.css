@@ -30,25 +30,82 @@
 }
 
 .jobTitle {
-  color: var(--app-indigo, #6366f1); /* fallback */
+  color: var(--color-indigo-400);
+  font-size: var(--font-size-h6);
+  line-height: var(--line-height-h6);
+  font-weight: var(--font-weight-regular);
+  margin: var(--spacing-4) 0 0 0;
+}
+
+/* Text color classes */
+.textForeground {
+  color: var(--theme-foreground);
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
+  margin: 0;
+}
+
+p.textForeground {
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+  margin: 0;
+}
+
+.textHeading {
+  color: var(--color-teal-200);
+  font-size: clamp(44px, 12vw, var(--font-size-h2));
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-medium);
+  margin: var(--spacing-3) 0 0 0;
+}
+
+.textLink {
+  color: var(--theme-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.textLink:hover {
+  color: var(--theme-link-hover);
 }
 
 .inlineCode {
+  display: inline-block;
   margin: 0;
   padding: 0;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  max-width: 100%;
+  font-size: var(--font-size-body-md);
+  line-height: var(--line-height-body-md);
+  color: var(--theme-foreground);
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .inlineCode :global(.keyword) {
-  color: var(--app-indigo, #6366f1);
+  color: var(--color-indigo-400);
 }
 
 .inlineCode :global(.link) {
-  color: var(--app-primary, #2dd4bf);
+  color: var(--color-teal-400);
 }
 
 .inlineCode :global(.punctuation) {
-  color: var(--app-code-punctuation, #94a3b8);
+  color: var(--color-slate-400);
 }
 
+@media (max-width: 768px) {
+  .introductionContainer {
+    left: var(--spacing-6);
+    right: var(--spacing-6);
+    width: auto;
+    height: min(420px, 55vh);
+    max-width: 560px;
+    transform: translateY(-50%);
+  }
+
+  .backgroundSvg {
+    top: -8dvh;
+    left: -10dvw;
+    width: 140dvw;
+  }
+}
