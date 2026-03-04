@@ -1,4 +1,4 @@
-import { ACTIONS_TASK, STATUSES, TASK_STATUS_FILTER_ALL } from "./constants.ts";
+import { STATUSES, TASK_STATUS_FILTER_ALL, TASK_TYPE } from "./constants.ts";
 
 export type StatsTabProperties = {
   counters: TaskStreamCounters;
@@ -18,10 +18,11 @@ export type TaskAggregator = {
   stop: () => void;
   subscribe: (listener: (event: TaskChangeEvent) => void) => () => void;
 };
+
 export type TaskChangeEvent =
-  | { id: string; previous: Task; type: ACTIONS_TASK.DELETED }
-  | { previous: Task; task: Task; type: ACTIONS_TASK.UPDATED }
-  | { task: Task; type: ACTIONS_TASK.CREATED };
+  | { id: string; previous: Task; type: typeof TASK_TYPE.DELETED }
+  | { previous: Task; task: Task; type: typeof TASK_TYPE.UPDATED }
+  | { task: Task; type: typeof TASK_TYPE.CREATED };
 
 export type TasksTabProperties = {
   counters: TaskStreamCounters;

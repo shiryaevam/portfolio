@@ -6,7 +6,7 @@ export const STATUSES = ["new", "in_progress", "blocked", "done"] as const;
 
 const [statusNew, progress, blocked, done] = STATUSES;
 
-export const TYPE_TASK = {
+export const TASK_TYPE = {
   CREATED: "created",
   DELETED: "deleted",
   UPDATED: "updated"

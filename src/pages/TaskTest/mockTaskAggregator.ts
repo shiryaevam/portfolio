@@ -2,7 +2,7 @@
 
 import type { Task, TaskAggregator, TaskChangeEvent } from "./types.ts";
 
-import { STATUSES, TYPE_TASK } from "./constants.ts";
+import { STATUSES, TASK_TYPE } from "./constants.ts";
 
 const randomInt = (minInclusive: number, maxInclusive: number): number => {
   const min = Math.ceil(minInclusive);
@@ -78,7 +78,7 @@ export const createMockTaskAggregator = ({
       const task = createTask();
 
       tasks.set(task.id, task);
-      emit({ task, type: TYPE_TASK.CREATED });
+      emit({ task, type: TASK_TYPE.CREATED });
 
       return;
     }
@@ -91,7 +91,7 @@ export const createMockTaskAggregator = ({
 
     if (action === "delete") {
       tasks.delete(id);
-      emit({ id, previous: current, type: TYPE_TASK.DELETED });
+      emit({ id, previous: current, type: TASK_TYPE.DELETED });
 
       return;
     }
@@ -108,7 +108,7 @@ export const createMockTaskAggregator = ({
     };
 
     tasks.set(id, next);
-    emit({ previous: current, task: next, type:TYPE_TASK.UPDATED });
+    emit({ previous: current, task: next, type:TASK_TYPE.UPDATED });
   };
 
   const scheduleNextTick = () => {
