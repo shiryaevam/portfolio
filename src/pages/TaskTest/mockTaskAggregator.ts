@@ -108,7 +108,7 @@ export const createMockTaskAggregator = ({
     };
 
     tasks.set(id, next);
-    emit({ previous: current, task: next, type:TASK_TYPE.UPDATED });
+    emit({ previous: current, task: next, type: TASK_TYPE.UPDATED });
   };
 
   const scheduleNextTick = () => {

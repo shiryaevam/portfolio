@@ -79,9 +79,13 @@ export const TasksTab = ({
       </Card>
 
       <Table
+        pagination={{
+          pageSize: 10,
+          showSizeChanger: true,
+          showTotal: (total) => total
+        }}
         columns={columns}
         dataSource={filteredTasks}
-        pagination={{ pageSize: 10, showSizeChanger: true, showTotal:(total)=>total }}
         rowKey={(record) => record.id}
         size="middle"
       />
