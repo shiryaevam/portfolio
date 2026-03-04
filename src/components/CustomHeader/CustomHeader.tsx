@@ -21,6 +21,47 @@ const titlePage: Record<string, string> = {
   "/projects": "_projects"
 };
 
+const menuItems: ItemType[] = [
+  {
+    label: "# navigate:",
+    disabled: true,
+    key: "navigate",
+    onClick: () => {}
+  },
+  {
+    label: (
+      <NavLink className={classNavLink} to={"/"}>
+        _hello
+      </NavLink>
+    ),
+    key: "/"
+  },
+  {
+    label: (
+      <NavLink className={classNavLink} to={"/about"}>
+        _about-me
+      </NavLink>
+    ),
+    key: "/about"
+  },
+  {
+    label: (
+      <NavLink className={classNavLink} to={"/projects"}>
+        _projects
+      </NavLink>
+    ),
+    key: "/projects"
+  },
+  {
+    label: (
+      <NavLink className={classNavLink} to={"/contact"}>
+        _contact-me
+      </NavLink>
+    ),
+    key: "/contact"
+  }
+];
+
 export const CustomHeader = ({
   containerRef
 }: {
@@ -33,47 +74,6 @@ export const CustomHeader = ({
   useEffect(() => {
     setMobileMenuVisible(false);
   }, [location.pathname]);
-
-  const menuItems: ItemType[] = [
-    {
-      label: "# navigate:",
-      disabled: true,
-      key: "navigate",
-      onClick: () => {}
-    },
-    {
-      label: (
-        <NavLink className={classNavLink} to={"/"}>
-          _hello
-        </NavLink>
-      ),
-      key: "/"
-    },
-    {
-      label: (
-        <NavLink className={classNavLink} to={"/about"}>
-          _about-me
-        </NavLink>
-      ),
-      key: "/about"
-    },
-    {
-      label: (
-        <NavLink className={classNavLink} to={"/projects"}>
-          _projects
-        </NavLink>
-      ),
-      key: "/projects"
-    },
-    {
-      label: (
-        <NavLink className={classNavLink} to={"/contact"}>
-          _contact-me
-        </NavLink>
-      ),
-      key: "/contact"
-    }
-  ];
 
   const handleMenuClick = () => {
     setMobileMenuVisible(false);

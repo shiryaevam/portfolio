@@ -8,7 +8,8 @@ import ContactPage from "./pages/Contact/ContactPage";
 import { HomePage } from "./pages/Home";
 import { MainLayout } from "./pages/Layout";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
-import ProjectsPage from "./pages/Projects/ProjectsPage";
+import { ProjectsPage } from "./pages/Projects";
+import { TaskTest } from "./pages/TaskTest";
 
 import "./App.css";
 
@@ -22,6 +23,7 @@ function App() {
             <Route element={<AboutPage />} path="/about" />
             <Route element={<ProjectsPage />} path="/projects" />
             <Route element={<ContactPage />} path="/contact" />
+            <Route element={<TaskTest />} path="/task-test" />
             <Route element={<NotFoundPage />} path="*" />
           </Route>
         </Routes>

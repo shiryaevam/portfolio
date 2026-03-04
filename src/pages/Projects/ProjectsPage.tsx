@@ -1,24 +1,37 @@
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
-import { Typography } from "antd";
+import { CustomCollapse } from "@components/CustomCollapse";
+import { type CollapseProps } from "antd";
 
-import type { LayoutContext } from "../../shared/types/OutletContextType.ts";
+import type { LayoutContext } from "@shared/types/OutletContextType.ts";
 
 import styles from "./ProjectsPage.module.css";
 
-const { Title } = Typography;
+const items: CollapseProps["items"] = [
+  {
+    label: "projects",
+    children: <p>тут должна быть фильтрация по стеку проектов</p>,
+    key: "1"
+  }
+];
 
-const ProjectsPage = () => {
+export const ProjectsPage = () => {
   const { referenceContainer } = useOutletContext<LayoutContext>();
 
   return (
     <div className={styles.page} ref={referenceContainer}>
-      <Title className={styles.title} level={1}>
-        Projects Page - Coming Soon
-      </Title>
-      <p>Project cards grid will be implemented here.</p>
+      <CustomCollapse items={items} />
+      <Link to="/task-test">
+        <img
+          width={"100%"}
+          src={
+            "https://habrastorage.org/r/w1560/getpro/habr/upload_files/c27/f2b/892/c27f2b8926fec4a9653966f79af109a4.png"
+          }
+          alt="Test task"
+          className={styles.image}
+          height={"100%"}
+        />
+      </Link>
     </div>
   );
 };
-
-export default ProjectsPage;
