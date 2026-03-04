@@ -1,9 +1,9 @@
 import { useOutletContext } from "react-router-dom";
 
-import { IconArrow } from "@icons";
-import { Collapse, type CollapseProps, Typography } from "antd";
+import { CustomCollapse } from "@components/CustomCollapse";
+import { type CollapseProps, Typography } from "antd";
 
-import type { LayoutContext } from "../../shared/types/OutletContextType.ts";
+import type { LayoutContext } from "@shared/types/OutletContextType.ts";
 
 import styles from "./AboutPage.module.css";
 
@@ -37,28 +37,19 @@ const AboutPage = () => {
 
   return (
     <div className={styles.page} ref={referenceContainer}>
-      <Collapse
-        expandIcon={({ isActive }) =>
-          isActive ? <IconArrow style={{ rotate: "270deg" }} /> : <IconArrow />
-        }
-        styles={{
-          body: { border: "none", borderRadius: 0 },
-          root: { borderRadius: 0 }
-        }}
-        items={items}
-        accordion
-      />
+      <CustomCollapse items={items} />
       <div className={styles.personalInfo}>
         <div>
           <Text>
-            I have 7 years of experience in web development lorem ipsum dolor
-            sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            officia deserunt mollit anim id est laborum.
+            Senior Frontend Engineer with 7+ years of expertise in building
+            scalable, high-performance web applications using React and
+            TypeScript. Proven track record in leading technical
+            initiatives—from designing low-code platforms that reduce team
+            workload by 600+ hours/month to optimizing bundle size by 10x.
+            Strong advocate for clean code, performance best practices, and
+            collaborative development. Seeking a senior/lead role in a
+            product-driven company where I can contribute to architectural
+            decisions and mentor teams
           </Text>
         </div>
       </div>

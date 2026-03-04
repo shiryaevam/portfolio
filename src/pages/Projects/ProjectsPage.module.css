@@ -1,8 +1,7 @@
 .page {
-  padding: var(--spacing-6);
   position: relative;
 }
 
-.title {
-  color: var(--primary-bg);
+.image {
+  padding: var(--spacing-6);
 }
