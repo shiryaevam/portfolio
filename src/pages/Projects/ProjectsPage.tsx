@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 import { CustomCollapse } from "@components/CustomCollapse";
 import { type CollapseProps } from "antd";
@@ -21,15 +21,17 @@ export const ProjectsPage = () => {
   return (
     <div className={styles.page} ref={referenceContainer}>
       <CustomCollapse items={items} />
-      <img
-        width={"100%"}
-        src={
-          "https://habrastorage.org/r/w1560/getpro/habr/upload_files/c27/f2b/892/c27f2b8926fec4a9653966f79af109a4.png"
-        }
-        alt="Test task"
-        className={styles.image}
-        height={"100%"}
-      />
+      <Link to="/task-test">
+        <img
+          width={"100%"}
+          src={
+            "https://habrastorage.org/r/w1560/getpro/habr/upload_files/c27/f2b/892/c27f2b8926fec4a9653966f79af109a4.png"
+          }
+          alt="Test task"
+          className={styles.image}
+          height={"100%"}
+        />
+      </Link>
     </div>
   );
 };

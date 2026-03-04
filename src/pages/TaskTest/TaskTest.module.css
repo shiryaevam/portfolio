@@ -1,0 +1,28 @@
+/* Full-width vertical spacing container */
+.fullWidthSpace {
+  width: 100%;
+}
+.spasePage {
+  padding: var(--spacing-6);
+}
+
+/* No margin for headings */
+.noMarginTitle {
+  margin: 0;
+}
+
+/* Fixed-width select dropdown */
+.selectMinWidth {
+  min-width: 180px;
+}
+
+/* Flex card with min-width for stat cards */
+.statCard {
+  flex: 0 0 auto;
+  min-width: 220px;
+}
+
+/* Vertical space with middle size gap */
+.verticalSpaceMiddle {
+  width: 100%;
+}
